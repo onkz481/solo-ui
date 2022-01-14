@@ -1,0 +1,10 @@
+//-- light theme
+
+//- base
+$app-bg-color: map-get($theme-colors, 'light');
+$app-color: map-get($theme-colors, 'dark');
+
+//- scrollbar
+$default-scrollbar-color: darken($app-bg-color, 10%);
+
+@import '../components/index';
