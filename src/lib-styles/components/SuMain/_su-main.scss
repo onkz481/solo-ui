@@ -1,0 +1,18 @@
+//-- Main
+.su-main {
+    display: flex;
+    justify-content: flex-start;
+    flex-grow: 1;
+    padding-top: $header-h;
+}
+.su-main__layout {
+    display: flex;
+    justify-content: space-between;
+    width: $main-w;
+}
+.su-main__layout-center {
+    width: 608px;
+}
+.su-main__layout-right {
+    width: 328px;
+}
