@@ -1,0 +1,76 @@
+//-- textarea style reset
+@mixin text-area__reset(){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  resize: none;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.su-textarea {
+  label {
+    top: 16px;
+  }
+
+  textarea {
+    @include text-area__reset;
+    @include set-headings-font('body-1');
+
+    align-self: stretch;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-height: 32px;
+    margin-top: 14px;
+    margin-bottom: 10px;
+  }
+
+  &.su-textarea--auto-grow {
+    textarea {
+      overflow: hidden;
+    }
+  }
+
+  &.su-input {
+    .su-input__slot-outer {
+      align-items: flex-start;
+
+      .su-input__prepend-outer, .su-input__append-outer,
+      .su-input__prepend-inner, .su-input__append-inner {
+        padding-top: 16px;
+      }
+    }
+  }
+}
+
+.su-app--light {
+  .su-textarea {
+    color: hsla(0,0%,0%,.12);
+
+    textarea {
+      color: hsla(0,0%,0%,.12);
+    }
+    &:hover {
+      fieldset {
+        border-color: hsla(0,0%,0%,1);
+      }
+    }
+  }
+}
+.su-app--dark {
+  .su-textarea {
+    color: hsla(0,0%,100%,.12);
+
+    textarea {
+      color: hsla(0,0%,100%,1);
+    }
+    &:hover {
+      fieldset {
+        border-color: hsla(0,0%,100%,1);
+      }
+    }
+  }
+}

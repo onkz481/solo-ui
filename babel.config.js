@@ -12,6 +12,9 @@ const buildPresets = [
   ],
 ];
 module.exports = {
- 	presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets),
-	plugins: ["transform-class-properties"]
+  presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets),
+	plugins: [
+    "transform-class-properties",
+    "@babel/plugin-transform-arrow-functions"
+  ]
 };

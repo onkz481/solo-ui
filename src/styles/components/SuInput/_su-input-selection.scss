@@ -1,0 +1,22 @@
+.su-input--selection__input {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  color: inherit;
+  
+  margin-right: 8px;
+
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  +.su-label {
+    height: 24px;
+    cursor: pointer;
+  }
+}

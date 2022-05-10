@@ -1,0 +1,52 @@
+//-- text decoration
+.text-decoration--none {
+  text-decoration: none !important;
+}
+.text-decoration--line-through {
+  text-decoration: line-through !important;
+}
+.text-decoration--overline {
+  text-decoration: overline !important;
+  &.dotted {
+    text-decoration: overline dotted !important;
+  }
+}
+.text-decoration--underline {
+  text-decoration: underline !important;
+  &.dotted {
+    text-decoration: underline dotted !important;
+  }
+}
+
+//-- transform
+.text-transform--capitalize {
+  text-transform: capitalize !important;
+}
+.text-transform--uppercase {
+  text-transform: uppercase !important;
+}
+.text-transform--lowercase {
+  text-transform: lowercase !important;
+}
+
+//-- opacity
+.text--primary {
+  opacity: 1;
+}
+.text--secondary {
+  opacity: .7;
+}
+.text--disabled {
+  opacity: .5;
+}
+
+//-- align
+.text--center {
+  text-align: center !important;
+}
+.text--left {
+  text-align: left !important;
+}
+.text--right {
+  text-align: right !important;
+}

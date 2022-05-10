@@ -12,6 +12,8 @@ import minimist from 'minimist';
 
 // 2021-01-14 install
 import scss from 'rollup-plugin-scss';
+// 2021-01-18 install
+import eslint from '@rollup/plugin-eslint';
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -40,18 +42,21 @@ const baseConfig = {
         ],
       }),
       scss({
-        output: true,
         output: 'dist/solo-ui.min.css',
         outputStyle: 'compressed'
+      }),
+      eslint({
+        fix: true
       }),
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true,
     },
     vue: {
       css: true,
       template: {
-        isProduction: true,
+        isProduction: true
       },
     },
     postVue: [
@@ -61,9 +66,9 @@ const baseConfig = {
       commonjs(),
     ],
     babel: {
-      exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-      babelHelpers: 'bundled',
+      exclude: new RegExp(`node_modules/(?!vue-runtime-helpers)`),
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs', '.vue'],
+      babelHelpers: 'bundled'
     },
   },
 };
@@ -95,7 +100,6 @@ if (!argv.format || argv.format === 'es') {
       file: 'dist/solo-ui.esm.js',
       format: 'esm',
       exports: 'named',
-      inlineDynamicImports: true,
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -130,7 +134,6 @@ if (!argv.format || argv.format === 'cjs') {
       name: 'SoloUi',
       exports: 'auto',
       globals,
-      inlineDynamicImports: true
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -160,7 +163,6 @@ if (!argv.format || argv.format === 'iife') {
       name: 'SoloUi',
       exports: 'auto',
       globals,
-      inlineDynamicImports: true
     },
     plugins: [
       replace(baseConfig.plugins.replace),

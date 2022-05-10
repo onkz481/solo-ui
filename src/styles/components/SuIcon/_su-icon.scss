@@ -1,0 +1,41 @@
+.su-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: normal;
+  user-select: none;
+  transition: .3s cubic-bezier(.25,.8,.5,1),visibility 0s;
+  width: 24px;
+  font-size: 24px;
+  height: 24px;
+
+  .su-icon__img {
+    display: flex;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.su-app--light {
+  .su-icon{
+    color: #000;
+
+    .su-icon--is-disabled {
+      color: hsla(0,0%,0%,.5)!important;
+    }
+  }
+}
+.su-app--dark {
+  .su-icon{
+    color: #fff;
+
+    .su-icon--is-disabled {
+      color: hsla(0,0%,100%,.5)!important;
+    }
+  }
+}

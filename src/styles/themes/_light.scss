@@ -1,0 +1,14 @@
+//-- light theme
+
+//- base
+$app-bg-color: map-get($theme-colors, 'light');
+$app-font-color: map-get($theme-colors, 'dark');
+$app-border-color: darken(map-get($theme-colors, 'light'), 30%);
+
+//- scrollbar
+$default-scrollbar-color: darken($app-bg-color, 10%);
+
+//- scheme
+$app-bg-color-lighten-1: lighten($app-bg-color, 10%);
+
+@import './common';

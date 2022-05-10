@@ -1,0 +1,6 @@
+@each $key, $val in $md-elevation-shadows {
+  // background
+  .elevation-#{"" + $key} {
+    box-shadow: $val !important;
+  }
+}

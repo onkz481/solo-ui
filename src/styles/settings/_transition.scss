@@ -1,0 +1,5 @@
+$transition: (
+  'swing': cubic-bezier(0.25, 0.8, 0.5, 1)
+);
+
+$priamry-transition: .3s map-get($transition, 'swing');

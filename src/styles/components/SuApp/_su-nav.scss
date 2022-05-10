@@ -1,0 +1,39 @@
+
+//-- Navigation
+.su-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  z-index: 16;
+
+  .su-nav-inner-w {
+    //-- Fixed Navigation
+    .su-nav__fixed {
+      position: fixed;
+      top: $app-header-h;
+      height: calc(100vh - #{$app-header-h});
+      padding-bottom: 16px;
+
+      //-- Scrll Navigation
+      .su-nav__scroll {
+        //width: calc(#{$app-nav-w} + #{$app-scrollbar-w});
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        @include set-scrollbar($default-scrollbar-color);
+
+        .su-nav__scroll-inner {
+          //width: $app-nav-w;
+        }
+      }
+    }
+  }
+}
+
+.su-nav-drawer {
+  position: fixed;
+  z-index: 16;
+  height: 100%;
+  overflow: auto;
+}

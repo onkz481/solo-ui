@@ -1,0 +1,20 @@
+@import './variables';
+
+.su-card__title {
+  @include set-headings-font('h6');
+
+  display: flex;
+  align-items: center;
+  height: $app-contents-header-h;
+  padding: 0 $card-padding;
+
+  *{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  +.su-card__subtitle {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,42 @@
+.su-list-item__subtitle {
+  @include set-headings-font('caption');
+
+  display: flex;
+  flex: 0 1 auto;
+  width: 100%;
+  overflow: hidden;
+
+  span {
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.su-list-item--two-line, .su-list-item--three-line {
+  .su-list-item__subtitle {
+    align-items: flex-end;
+  }
+}
+.su-list-item--two-line {
+  .su-list-item__subtitle {
+    height: 20px;
+  }
+}
+.su-list-item--three-line {
+  .su-list-item__subtitle {
+    height: 20px;
+  }
+}
+
+.su-app--light {
+  .su-list-item__subtitle {
+    color: hsla(0,0%,0%,.4);
+  }
+}
+.su-app--dark {
+  .su-list-item__subtitle {
+    color: hsla(0,0%,100%,.4);
+  }
+}

@@ -1,0 +1,34 @@
+.su-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $app-header-h;
+  padding-bottom: $app-gutter;
+  z-index: 4;
+
+  .su-header__wrapper {
+    @include set-md-elevation(8);
+    
+    width: 100%;
+    height: 100%;
+    background: lighten($app-bg-color, 10%);
+  }
+
+  .su-header__inner {
+    display: flex;
+    align-items: center;
+    width: $app-width;
+    height: 100%;
+    margin: 0 auto;
+    
+    /* icon */
+    > .su-icon {
+      width: 48px;
+      height: 48px;
+    }
+    /* divider */
+    .su-divider--vertical {
+      margin: 0 8px;
+    }
+  }
+}

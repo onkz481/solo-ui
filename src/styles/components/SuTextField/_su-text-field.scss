@@ -1,0 +1,130 @@
+//-- input style reset
+@mixin text-field__reset(){
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+}
+
+.su-text-field {
+  border-radius: inherit;
+
+  .su-text-field__slot {
+    @include set-headings-font('body-1');
+    font-weight: map-get($font-weights, 'thin');
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-height: 56px;
+    
+    label {
+      position: absolute;
+      left: 0;
+      right: auto;
+      transform-origin: top left;
+      cursor: text;
+    }
+    input {
+      @include text-field__reset;
+      @include set-headings-font('body-1');
+      font-weight: map-get($font-weights, 'light');
+  
+      width: 100%;
+    }
+  }
+
+  fieldset {
+    border-collapse: collapse;
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: inherit;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 10px;
+    transition-duration: .15s;
+    transition-property: color;
+    transition-timing-function: cubic-bezier(.25,.8,.25,1);
+    transition: .3s cubic-bezier(.25,.8,.5,1);
+
+    legend {
+      transition: .3s cubic-bezier(.25,.8,.5,1);
+    }
+  }
+
+  &.su-input {
+    .su-input__container {
+      margin-top: 8px;
+    }
+
+    .su-input__slot-outer {
+      .su-input__slot-inner {
+        padding: 0 12px 0 16px;
+        cursor: text;
+      }
+    }
+
+    &.su-input--is-prepend-inner {
+      .su-input__slot-outer {
+        .su-input__slot-inner {
+          padding: 0 12px;
+        }
+      }
+    }
+  }
+  &.su-input--is-active {
+    .su-label {
+      transform: translateY(-24px) scale(.75);
+    }
+    &.su-input--is-prepend-inner {
+      .su-label {
+        transform: translateX(-28px) translateY(-24px) scale(.75);
+      }
+    }
+
+    fieldset {
+      border-color: inherit;
+    }
+  }
+  &.su-input--is-error {
+    label {
+      color: inherit !important;
+    }
+  }
+}
+
+.su-app--light {
+  .su-text-field {
+    color: hsla(0,0%,0%,.12);
+
+    .su-text-field__slot input {
+      color: hsla(0,0%,0%,.12);
+    }
+    &:hover {
+      fieldset {
+        border-color: hsla(0,0%,0%,1);
+      }
+    }
+  }
+}
+.su-app--dark {
+  .su-text-field {
+    color: hsla(0,0%,100%,.12);
+
+    .su-text-field__slot input {
+      color: hsla(0,0%,100%,1);
+    }
+    &:hover {
+      fieldset {
+        border-color: hsla(0,0%,100%,1);
+      }
+    }
+  }
+}

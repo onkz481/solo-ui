@@ -1,0 +1,29 @@
+
+//-- app
+$app-width: 1200px; // application width
+$app-gutter: 16px; // gutter
+$app-scrollbar-w: 16px; // scrollbar width
+
+//-- header
+$app-header-h: 72px;
+//-- nav
+$app-nav-w: 232px;
+//-- main
+$app-main-w: 952px;
+$app-main-center-w: 608px;
+$app-main-right-w: $app-main-w - $app-main-center-w - $app-gutter;
+
+//-- contents
+$app-contents-header-h: 48px;
+$app-contents-border-r: 16px;
+$app-contents-padding: 8px;
+$app-contents-padding-half: 4px;
+
+//-- rounded
+$rounded: (
+  'none': 0px,
+  'small': 2px,
+  'normal': 4px,
+  'medium': 8px,
+  'large': 16px
+);

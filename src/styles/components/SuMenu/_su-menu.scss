@@ -1,0 +1,12 @@
+.su-menu {
+  display: contents;
+}
+
+.su-menu-content {
+  position: absolute;
+  z-index: 8;
+
+  .su-menu-content__inner {
+    @include set-md-elevation(8);
+  }
+}

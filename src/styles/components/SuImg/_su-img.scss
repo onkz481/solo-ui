@@ -1,0 +1,25 @@
+.su-img {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  max-width: 100%;
+  overflow: hidden;
+
+  .su-img__sizer {
+    flex: 1 0 0px;
+  }
+
+  .su-img__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+
+    &.su-img__image--contain {
+      background-size: contain;
+    }
+    &.su-img__image--cover {
+      background-size: cover;
+    }
+  }
+}

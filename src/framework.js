@@ -1,13 +1,44 @@
-import { install } from './install';
+import install from './install';
+
+import { options } from './options/default';
+import { deepMerge } from './util/helpers';
+
+import * as services from './services';
 
 export default class SoloUi {
-    static install = install
+  static install = install
 
-    constructor(options = {}){
-        // css import
-        import('./lib-styles/main.scss'); // app initialize
+  framework = {}
 
-        const theme = options.theme || 'light';
-        document.getElementsByTagName('html')[0].dataset.theme = theme;
-    }
+  installed = []
+
+  options = {}
+
+  constructor(userOptions = {}){
+    this.options = deepMerge(options, userOptions)
+
+    document.getElementsByTagName('html')[0].dataset.theme = this.options.theme.current
+
+    Object.keys(services).forEach(key => {
+      this.use(services[key])
+    })
+  }
+
+  init(){
+    this.installed.forEach((property) => {
+      const service = this.framework[property]
+
+      service.framework = this.framework
+
+      service.init()
+    })
+  }
+
+  use(Service){
+    const property = Service.property
+    if( this.installed.includes(property) ) return
+
+    this.framework[property] = new Service(this.options, this)
+    this.installed.push(property)
+  }
 }

@@ -1,0 +1,26 @@
+.su-input {
+  .su-radio-group__input {
+    display: flex;
+    width: 100%;
+  }
+
+  &.su-radio-group--is-column {
+    .su-radio-group__input {
+      flex-direction: column;
+
+      .su-radio:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+  }
+  &.su-radio-group--is-row {
+    .su-radio-group__input {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .su-radio {
+        margin-right: 16px;
+      }
+    }
+  }
+}

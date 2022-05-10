@@ -1,0 +1,12 @@
+//-- Main
+.su-main {
+    display: flex;
+    justify-content: flex-start;
+    flex-grow: 1;
+    padding-top: $app-header-h;
+    z-index: 0;
+}
+.su-main__layout {
+    display: flex;
+    justify-content: space-between;
+}

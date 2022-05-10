@@ -1,0 +1,18 @@
+.su-label {
+  display: inline-flex;
+  align-items: center;
+  flex: 1 1 auto;
+
+  transition: $priamry-transition;
+}
+
+.su-app--light {
+  .su-label {
+    color: hsla(0,0%,0%,.7);
+  }
+}
+.su-app--dark {
+  .su-label {
+    color: hsla(0,0%,100%,.7);
+  }
+}

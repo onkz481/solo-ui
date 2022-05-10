@@ -1,0 +1,32 @@
+.su-code {
+  pre {
+    overflow: auto;
+  }
+  code {
+    border-radius: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+  }
+  pre, code {
+    background: inherit;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+}
