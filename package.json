@@ -6,6 +6,13 @@
     "vue"
   ],
   "license": "MIT",
+  "author": "Kazuya Ono <prvogo@gmail.com>",
+  "homepage": "https://github.com/onkz481/solo-ui",
+  "bugs": "https://github.com/onkz481/solo-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onkz481/solo-ui.git"
+  },
   "main": "dist/solo-ui.ssr.js",
   "browser": "dist/solo-ui.esm.js",
   "module": "dist/solo-ui.esm.js",
