@@ -12,12 +12,10 @@ export default SuAppbar.extend({
   },
   computed: {
     innerStyles(){
-      return [
-        {
-          'width': this.$soloui.layout.mobile ? '100%' : `${this.$soloui.layout.header.width}px`,
-          'padding': this.$soloui.layout.mobile ? `0 ${this.$soloui.layout.gutter}px` : undefined
-        }
-      ]
+      return {
+        'width': this.$soloui.layout.mobile ? '100%' : `${this.$soloui.layout.header.width}px`,
+        'padding': this.$soloui.layout.mobile ? `0 ${this.$soloui.layout.gutter}px` : undefined
+      }
     }
   },
   methods: {

@@ -1,11 +1,12 @@
+export function install (Vue, args = {}) {
+  if( install.installed ) return
+  install.installed = true
 
-export default function install (Vue, args = {}) {
-
-  const components = args.components || {};
+  const components = args.components || {}
 
   Object.entries(components).forEach(([componentName, component]) => {
-      Vue.component(componentName, component);
-  });
+    Vue.component(componentName, component)
+  })
 
   Vue.mixin({
     beforeCreate(){

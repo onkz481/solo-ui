@@ -1,12 +1,14 @@
-import install from './install';
+import { install } from './install'
 
-import { options } from './options/default';
-import { deepMerge } from './util/helpers';
+import { options } from './options/default'
+import { deepMerge } from './util/helpers'
 
-import * as services from './services';
+import * as services from './services'
 
 export default class SoloUi {
   static install = install
+
+  static installed = false
 
   framework = {}
 
