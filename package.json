@@ -1,7 +1,11 @@
 {
   "name": "solo-ui",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Solo UI Components with Vue.js",
+  "keywords": [
+    "vue"
+  ],
+  "license": "MIT",
   "main": "dist/solo-ui.ssr.js",
   "browser": "dist/solo-ui.esm.js",
   "module": "dist/solo-ui.esm.js",
