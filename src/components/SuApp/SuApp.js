@@ -1,3 +1,6 @@
+// styles
+import './SuApp.scss'
+
 // components
 import { SuImg } from '../SuImg'
 
