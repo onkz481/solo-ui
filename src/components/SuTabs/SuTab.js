@@ -1,11 +1,12 @@
 import { SuItemBase } from '../SuItemGroup/SuItem'
 
 //mixins
+import themeable from '../../mixins/themeable'
 import { factory as GroupableFactory } from '../../mixins/groupable'
 
 export default SuItemBase.extend({
   name: 'SuTab',
-  mixins: [GroupableFactory('tabsBar', 'su-tab', 'su-tabs')],
+  mixins: [themeable, GroupableFactory('tabsBar', 'su-tab', 'su-tabs')],
   props: {
     tag: {
       type: String,
@@ -16,7 +17,8 @@ export default SuItemBase.extend({
     classes(){
       return [
         ...SuItemBase.options.computed.classes.call(this),
-        'su-tab'
+        'su-tab',
+        this.themeableClass
       ]
     }
   },

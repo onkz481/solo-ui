@@ -52,6 +52,8 @@ export default Vue.extend({
 
       this.$nextTick(() => {
         this.updateDimensions()
+
+        insertBefore(this.$el.parentNode, this.activatorNode[0]['elm'])
         
         if( this.isInNav ){
           insertBefore(document.getElementsByClassName('su-nav__fixed')[0], this.menuContentNode['elm'])
@@ -125,7 +127,6 @@ export default Vue.extend({
   },
   render(h){
     const options = {
-      ref: 'activator',
       staticClass: 'su-menu',
       class: [
         {

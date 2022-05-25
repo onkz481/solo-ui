@@ -36,7 +36,7 @@ export default SuItemBase.extend({
     hasLabel(){
       return SuInput.options.computed.hasLabel.call(this)
     },
-    inputId(){
+    computedId(){
       return SuInput.options.computed.computedId.call(this)
     }
   },
@@ -71,7 +71,10 @@ export default SuItemBase.extend({
   render(h){
     return h('div', {
       staticClass: 'su-radio',
-      class: this.classes
+      class: this.classes,
+      on: Object.assign({
+        click: this.onChange
+      }, this.$listeners)
     }, [
       this.genRadio(),
       this.genLabel()

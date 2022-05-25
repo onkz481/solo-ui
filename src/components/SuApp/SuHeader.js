@@ -3,6 +3,11 @@ import { SuAppbar } from '../SuAppbar'
 
 export default SuAppbar.extend({
   name: 'SuHeader',
+  inject: {
+    application: {
+      default: null
+    }
+  },
   mixins: [SuAppbar],
   props: {
     elevation: {
@@ -17,6 +22,9 @@ export default SuAppbar.extend({
         'padding': this.$soloui.layout.mobile ? `0 ${this.$soloui.layout.gutter}px` : undefined
       }
     }
+  },
+  created(){
+    this.application.register('header', this)
   },
   methods: {
     genWrapper(){
@@ -43,7 +51,14 @@ export default SuAppbar.extend({
   },
   render(h){
     return h('div', {
-      staticClass: 'su-header'
+      staticClass: 'su-header',
+      class: [
+        this.themeableClass
+      ],
+      style: {
+        height: `${this.$soloui.layout.header.height}px`,
+        paddingBottom: `${this.$soloui.layout.gutter}px`
+      }
     }, [
       this.genWrapper()
     ])

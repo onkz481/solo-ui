@@ -14,6 +14,20 @@ export const options = {
     current: 'en',
     locales: locales
   },
+  layout: {
+    thresholds: {
+      lg: 1200,
+      md: 1000,
+      sm: 688
+    },
+    nav: {
+      lgUp: 232,
+      mobile: 256
+    },
+    main: {
+      right: 328
+    }
+  },
   theme: {
     current: 'light'
   }

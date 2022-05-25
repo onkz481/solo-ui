@@ -1,14 +1,17 @@
 // mixins
+import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import roundable from '../../mixins/roundable'
 import sizeable from '../../mixins/sizeable'
+import dimensionable from '../../mixins/dimensionable'
 import elevatable from '../../mixins/elevatable'
+import routable from '../../mixins/routable'
 
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuBtn',
-  mixins: [colorable, roundable, sizeable, elevatable],
+  mixins: [themeable, colorable, roundable, sizeable, dimensionable, elevatable, routable],
   props: {
     tag: {
       type: String,
@@ -35,12 +38,6 @@ export default Vue.extend({
       default: 'normal'
     }
   },
-  data: () => ({
-    isDark: false,
-    hasIcon: false,
-    hasIconIsFirst: false,
-    hasIconIsLast: false
-  }),
   computed: {
     hasBg(){
       return !this.text && !this.outlined
@@ -48,6 +45,8 @@ export default Vue.extend({
     classes(){
       return [
         'su-btn__reset',
+        ...routable.options.computed.classes.call(this),
+        this.themeableClass,
         this.colorableClasses,
         this.roundableClasses,
         this.sizeableClasses,
@@ -58,41 +57,22 @@ export default Vue.extend({
           'su-btn--is-disabled': this.disabled,
           'su-btn--is-outlined': this.outlined,
           'su-btn--is-icon': this.icon,
-          'su-btn--is-round': this.icon,
-          'su-btn--has-icon': this.hasIcon,
-          'su-btn--has-icon--is-first': this.hasIconIsFirst,
-          'su-btn--has-icon--is-last': this.hasIconIsLast,
+          'su-btn--is-round': this.icon
         }
-      ];
+      ]
     },
     styles(){
       return [
-        this.colorableInlines
-      ];
+        this.colorableInlines,
+        this.dimensionableInlines
+      ]
     },
-  },
-  mounted(){
-    this.initialize();
   },
   methods: {
-    initialize(){
-      //-- ダークモードの判定
-      this.isDark = (window.matchMedia('(prefers-color-scheme: dark)').matches == true) ? true : false;
-
-      // has icon
-      this.hasIcon = Boolean(!this.icon && this.$slots.default.some(vnode => vnode.child && vnode.child.$options._componentTag === 'su-icon'));
-
-      if( !this.icon ){
-        let length = this.$slots.default.length;
-
-        // has icon first
-        this.hasIconIsFirst = Boolean(this.$slots.default[0].child && this.$slots.default[0].child.$options._componentTag === 'su-icon');
-        // has icon last
-        this.hasIconIsLast = Boolean((length > 1) && this.$slots.default[length - 1].child && this.$slots.default[length - 1].child.$options._componentTag === 'su-icon');
-      }
-    },
     genContent(){
-      return this.$createElement('span', {}, this.$slots.default)
+      return this.$slots.default.map(vnode => {
+        return !vnode.context ? this.$createElement('span', {}, vnode.text) : vnode
+      })
     },
     genLoader(){
       if( !this.loading ) return
@@ -113,7 +93,9 @@ export default Vue.extend({
     }
   },
   render(h){
-    return h(this.tag, {
+    const tag = this.to ? 'router-link' : this.tag
+
+    const data = {
       staticClass: 'su-btn',
       attrs: {
         type: 'button'
@@ -126,7 +108,11 @@ export default Vue.extend({
       on: {
         click: this.onClick
       }
-    }, [
+    }
+
+    if( this.to ) data.props.to = this.to
+
+    return h(tag, data, [
       this.loading ? this.genLoader() : this.genContent()
     ])
   }

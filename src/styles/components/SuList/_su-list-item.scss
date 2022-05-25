@@ -87,13 +87,16 @@
   }
 }
 
-.su-app--light {
-  .su-list-item:not(.su-list-item--active) {
-    color: map-get($theme-colors, 'dark');
+@include set-theme(su-list-item) using ($material) {
+  &:not(.su-list-item--active) {
+    color: map-deep-get($material, 'list-items', 'title');
   }
-}
-.su-app--dark {
-  .su-list-item:not(.su-list-item--active) {
-    color: map-get($theme-colors, 'light');
+
+  .su-list-item__subtitle {
+    color: map-deep-get($material, 'list-items', 'subtitle');
+  }
+
+  .su-list-item__overline {
+    color: map-deep-get($material, 'list-items', 'overline');
   }
 }

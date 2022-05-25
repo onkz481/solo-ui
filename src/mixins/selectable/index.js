@@ -1,4 +1,6 @@
+// components
 import { SuInput } from '../../components/SuInput'
+import { SuLabel } from '../../components/SuLabel'
 
 export function genInput(vm, type){
   return vm.$createElement('input', {
@@ -11,11 +13,6 @@ export function genInput(vm, type){
     domProps: {
       value: vm.value,
       checked: vm.isActive
-    },
-    on: {
-      focus: vm.onFocus,
-      blur: vm.onBlur,
-      change: vm.onChange
     },
     ref: 'input'
   })
@@ -52,10 +49,21 @@ export default SuInput.extend({
     }
   },
   methods: {
+    genLabel(){
+      if( !this.hasLabel ) return
+
+      return this.$createElement(SuLabel, {
+        attrs: {
+          for: this.computedId
+        },
+        ref: 'label'
+      }, this.$slots.label || this.label)
+    },
     genInput(type){
       return genInput(this, type)
     },
     onClick(e){
+      this.onChange()
       this.$emit('click', e)
     },
     onFocus(e){

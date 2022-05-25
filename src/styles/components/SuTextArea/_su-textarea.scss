@@ -46,31 +46,8 @@
   }
 }
 
-.su-app--light {
-  .su-textarea {
-    color: hsla(0,0%,0%,.12);
-
-    textarea {
-      color: hsla(0,0%,0%,.12);
-    }
-    &:hover {
-      fieldset {
-        border-color: hsla(0,0%,0%,1);
-      }
-    }
-  }
-}
-.su-app--dark {
-  .su-textarea {
-    color: hsla(0,0%,100%,.12);
-
-    textarea {
-      color: hsla(0,0%,100%,1);
-    }
-    &:hover {
-      fieldset {
-        border-color: hsla(0,0%,100%,1);
-      }
-    }
+@include set-theme(su-textarea) using ($material) {
+  textarea {
+    color: map-deep-get($material, 'text-fields', 'font-color');
   }
 }

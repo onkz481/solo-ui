@@ -13,14 +13,3 @@
     overflow: hidden;
   }
 }
-
-.su-app--light {
-  .su-list-item__overline {
-    color: hsla(0,0%,0%,.4);
-  }
-}
-.su-app--dark {
-  .su-list-item__overline {
-    color: hsla(0,0%,100%,.4);
-  }
-}

@@ -1,4 +1,4 @@
-import { Service } from '../service';
+import { Service } from '../service'
 
 export class Breakpoint extends Service{
   static property = 'breakpoint'

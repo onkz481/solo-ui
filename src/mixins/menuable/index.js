@@ -74,6 +74,11 @@ export default {
       }
     },
   },
+  destroyed(){
+    if( !this.menuContentNode.elm ) return
+
+    this.menuContentNode.elm.remove()
+  },
   methods: {
     updateDimensions(){
       if( !this.activatorNode.length > 0 ) return

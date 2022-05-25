@@ -19,7 +19,10 @@
   flex-shrink: 0;
   position: relative;
   border-radius: $btn-border-radius;
-  color: $btn-color;
+
+  >span {
+    display: inline-flex;
+  }
   
   &:before {
     background-color: currentColor;
@@ -110,19 +113,6 @@
     }
   }
 
-  &.su-btn--has-icon {
-    &.su-btn--has-icon--is-first {
-      padding-left: 12px;
-    }
-    &.su-btn--has-icon--is-last {
-      padding-right: 12px;
-    }
-
-    .su-icon i {
-      font-size: 18px;
-    }
-  }
-
   .su-btn__content {
     display: flex;
     align-items: center;
@@ -139,11 +129,19 @@
 
   /* icon */
   &:not(.su-btn--is-round) {
-    .su-icon:first-child {
-      margin-right: 8px;
-    }
-    .su-icon:last-child {
-      margin-left: 8px;
+    .su-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+
+      &:first-child {
+        margin-left: -4px;
+        margin-right: 8px;
+      }
+      &:last-child {
+        margin-left: 8px;
+        margin-right: -4px;
+      }
     }
   }
 }
@@ -167,33 +165,17 @@
   100%{-webkit-transform:rotate(360deg)}
 }
 
-.su-app--light {
-  .su-btn {
-    background-color: darken($btn-bg-color, 20%);
-    border-color: darken($btn-bg-color, 20%);
-  }
+@include set-theme(su-btn) using ($material) {
+  background-color: map-deep-get($material, 'buttons', 'background-color');
+  border-color: map-deep-get($material, 'buttons', 'border-color');
+  color: map-deep-get($material, 'font-colors', 'primary');
 
-  .su-btn--is-outlined {
-    border: thin solid hsla(0,0%,0%,.12);
+  &--is-outlined {
+    border: thin solid map-deep-get($material, 'buttons', 'border-color');
   }
 
   .su-btn--loading-animation {
-    border:3px solid #000;
-    border-top-color:transparent;
-  }
-}
-.su-app--dark {
-  .su-btn {
-    background-color: lighten($btn-bg-color, 20%);
-    border-color: lighten($btn-bg-color, 20%);
-  }
-
-  .su-btn--is-outlined {
-    border: thin solid hsla(0,0%,100%,.12);
-  }
-  
-  .su-btn--loading-animation {
-    border:3px solid #fff;
-    border-top-color:transparent;
+    border: 3px solid currentColor;
+    border-top-color: transparent;
   }
 }

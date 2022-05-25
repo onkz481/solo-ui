@@ -1,4 +1,5 @@
 // mixins
+import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import routable from '../../mixins/routable'
 import { factory as GroupableFactory } from '../../mixins/groupable'
@@ -8,7 +9,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuListItem',
-  mixins: [colorable, routable, GroupableFactory('listItemGroup'), toggleable],
+  mixins: [themeable, colorable, routable, GroupableFactory('listItemGroup'), toggleable],
   props: {
     text: {
       type: Boolean,
@@ -33,6 +34,7 @@ export default Vue.extend({
       return [
         'su-list-item',
         ...routable.options.computed.classes.call(this),
+        this.themeableClass,
         this.isActive && this.colorableClasses,
         {
           'su-list-item--is-link': this.isLink,
@@ -76,6 +78,7 @@ export default Vue.extend({
   },
   render(h){
     const tag = this.to ? 'router-link' : this.tag
+    
     const data = {
       class: this.classes,
       style: this.styles,

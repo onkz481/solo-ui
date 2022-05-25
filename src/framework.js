@@ -19,8 +19,6 @@ export default class SoloUi {
   constructor(userOptions = {}){
     this.options = deepMerge(options, userOptions)
 
-    document.getElementsByTagName('html')[0].dataset.theme = this.options.theme.current
-
     Object.keys(services).forEach(key => {
       this.use(services[key])
     })

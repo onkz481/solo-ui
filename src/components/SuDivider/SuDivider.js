@@ -1,7 +1,11 @@
 import Vue from 'vue'
 
+// mixins
+import themeable from '../../mixins/themeable';
+
 export default Vue.extend({
   name: 'SuDivider',
+  mixins: [themeable],
   props: {
     vertical: {
       type: Boolean,
@@ -13,10 +17,13 @@ export default Vue.extend({
   }),
   computed: {
     classes(){
-      return {
-        'su-divider--horizontal': !this.vertical,
-        'su-divider--vertical': this.vertical
-      };
+      return [
+        this.themeableClass,
+        {
+          'su-divider--horizontal': !this.vertical,
+          'su-divider--vertical': this.vertical
+        }
+      ]
     },
     ariaOrientation(){
       return this.vertical ? 'vertical' : 'horizontal';

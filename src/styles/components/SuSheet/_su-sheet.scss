@@ -2,30 +2,18 @@
 
 .su-sheet {
   max-width: 100%;
-  background-color: $sheet-bg-color;
 
   &.su-sheet--outlined {
     @include set-md-elevation(0);
   }
 }
 
-.su-app--light {
-  .su-sheet {
-    /* scrollbar */
-    @include set-scrollbar(hsla(0,0%,0%,.12));
+@include set-theme(su-sheet) using ($material) {
+  @include set-scrollbar(map-deep-get($material, 'sheets', 'border-color'));
 
-    &.su-sheet--outlined {
-      border: thin solid hsla(0,0%,0%,.12);
-    }
-  }
-}
-.su-app--dark {
-  .su-sheet {
-    /* scrollbar */
-    @include set-scrollbar(hsla(0,0%,100%,.12));
+  background-color: map-deep-get($material, 'sheets', 'background-color');
 
-    &.su-sheet--outlined {
-      border: thin solid hsla(0,0%,100%,.12);
-    }
+  &--outlined {
+    border: thin solid map-deep-get($material, 'sheets', 'border-color');
   }
 }

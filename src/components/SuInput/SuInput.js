@@ -1,4 +1,5 @@
 // mixins
+import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import validatable from '../../mixins/validatable'
 
@@ -14,7 +15,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuInput',
-  mixins: [validatable, colorable],
+  mixins: [themeable, validatable, colorable],
   props: {
     appendInnerIcon: {
       type: String,
@@ -64,6 +65,7 @@ export default Vue.extend({
     classes(){
       return [
         (this.isFocus && !this.hasError) ? this.colorableClasses : undefined,
+        this.themeableClass,
         {
           'su-input--has-label': this.hasLabel,
           'su-input--is-focus': this.isFocus,
@@ -180,19 +182,19 @@ export default Vue.extend({
     },
     genInputSlotInner(){
       return this.$createElement('div', {
-        staticClass: 'su-input__slot-inner'
+        staticClass: 'su-input__slot-inner',
+        on: {
+          click: this.onClick,
+          mousedown: this.onMousedown,
+          mouseup: this.onMouseup
+        }
       }, [
         this.genDefaultSlot()
       ])
     },
     genInputSlotOuter(){
       return this.$createElement('div', {
-        staticClass: 'su-input__slot-outer',
-        on: {
-          click: this.onClick,
-          mousedown: this.onMousedown,
-          mouseup: this.onMouseup
-        }
+        staticClass: 'su-input__slot-outer'
       }, [
         this.genSlot('prepend', 'outer'),
         this.genInputSlotInner(),

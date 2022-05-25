@@ -5,6 +5,13 @@ export default {
   data: () => ({
     activatorNode: []
   }),
+  destroyed(){
+    if( !this.activatorNode.length ) return
+
+    this.activatorNode.forEach(node => {
+      node.elm.remove()
+    })
+  },
   methods: {
     genActivator(){
       const node = getSlot(this, 'activator', { on: this.genActivatorEventListeners() })

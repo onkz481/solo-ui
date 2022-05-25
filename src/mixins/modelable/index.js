@@ -2,7 +2,7 @@ export default {
   name: 'modelable',
   model: {
     prop: 'modelValue',
-    event: 'update:modelValue'
+    event: 'input'
   },
   props: {
     modelValue: {
@@ -24,7 +24,7 @@ export default {
 
         this.internalModelValue = val
 
-        this.$emit('update:modelValue', val)
+        this.$emit('input', val)
       }
     }
   },

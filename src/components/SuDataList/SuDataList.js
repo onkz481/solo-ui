@@ -47,9 +47,6 @@ export default Vue.extend({
       required: false
     }
   },
-  data: () => ({
-    isInitialized: false
-  }),
   computed: {
     isMostBottom(){
       return this.total <= this.to
@@ -61,13 +58,7 @@ export default Vue.extend({
       return (this.mostBottomText) ? this.mostBottomText : this.$soloui.lang.t('su-data-list.most_bottom_text')
     }
   },
-  mounted(){
-    this.initialize();
-  },
   methods: {
-    initialize(){
-      this.isInitialized = true;
-    },
     genItems(){
       if( !this.items.length ) return
 

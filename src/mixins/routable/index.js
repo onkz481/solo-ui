@@ -29,6 +29,9 @@ export default Vue.extend({
         (this.isActive && this.activeClass) && this.activeClass,
         (this.isActive && this.internalClass) && this.internalClass
       ]
+    },
+    isRoute(){
+      return !!this.$router && !!this.to
     }
   },
   watch: {

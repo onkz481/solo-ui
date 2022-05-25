@@ -1,6 +1,9 @@
 // components
 import { SuImg } from '../SuImg'
 
+// mixins
+import themeable from '../../mixins/themeable'
+
 // helpers
 import { assignProps } from '../../util/helpers'
 
@@ -8,7 +11,12 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuApp',
-  mixins: [SuImg],
+  mixins: [themeable, SuImg],
+  provide(){
+    return {
+      application: this
+    }
+  },
   props: {
     id: {
       type: String,
@@ -20,23 +28,23 @@ export default Vue.extend({
     }
   },
   data: () => ({
-    isDark: false,
+    header: null,
+    nav: null
   }),
   computed: {
     classes(){
       return [
-        this.isDark ? 'su-app--dark' : 'su-app--light'
+        this.themeableClass
       ]
+    },
+    hasHeader(){
+      return !!this.header
+    },
+    hasNav(){
+      return !!this.nav
     }
   },
-  mounted(){
-    this.$nextTick(this.initialize())
-  },
   methods: {
-    initialize(){
-      //-- ダークモードの判定
-      this.isDark = (window.matchMedia('(prefers-color-scheme: dark)').matches == true) ? true : false
-    },
     genImg(){
       if( !this.src ) return
 
@@ -58,7 +66,10 @@ export default Vue.extend({
 
       return this.$createElement('div', {
         staticClass: 'su-app-absoluted__wrapper'
-      }, inner)
+      }, [inner])
+    },
+    register(target, node){
+      this[target] = node
     }
   },
   render(h){
@@ -66,7 +77,7 @@ export default Vue.extend({
       staticClass: 'su-app',
       class: this.classes,
       attrs: {
-        id: this.id
+        id: this.id,
       }
     }, [
       this.genImg(),

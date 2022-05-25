@@ -203,12 +203,13 @@ export default Vue.extend({
     },
   },
   render(h){
-    if( this.isNarrow ) return this.genMenu()
-
     return h('div', {
       staticClass: 'su-list-group',
       class: this.classes
-    }, [
+    },
+    this.isNarrow ? [
+      this.genMenu()
+    ] : [
       this.genHeader(),
       this.genTransition(this.genItems())
     ])

@@ -1,3 +1,5 @@
+@import './variables';
+
 //-- input style reset
 @mixin text-field__reset(){
   padding: 0;
@@ -100,31 +102,16 @@
   }
 }
 
-.su-app--light {
-  .su-text-field {
-    color: hsla(0,0%,0%,.12);
+@include set-theme(su-text-field) using ($material) {
+  color: map-deep-get($material, 'text-fields', 'color');
 
-    .su-text-field__slot input {
-      color: hsla(0,0%,0%,.12);
-    }
-    &:hover {
-      fieldset {
-        border-color: hsla(0,0%,0%,1);
-      }
-    }
+  .su-text-field__slot input {
+    color: map-deep-get($material, 'text-fields', 'font-color');
   }
-}
-.su-app--dark {
-  .su-text-field {
-    color: hsla(0,0%,100%,.12);
-
-    .su-text-field__slot input {
-      color: hsla(0,0%,100%,1);
-    }
-    &:hover {
-      fieldset {
-        border-color: hsla(0,0%,100%,1);
-      }
+  
+  &:hover {
+    fieldset {
+      border-color: map-deep-get($material, 'text-fields', 'border-color');
     }
   }
 }

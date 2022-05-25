@@ -1,4 +1,5 @@
 // mixins
+import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import roundable from '../../mixins/roundable'
 import dimensionable from '../../mixins/dimensionable'
@@ -8,7 +9,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuSheet',
-  mixins: [colorable, roundable, dimensionable, elevatable],
+  mixins: [themeable, colorable, roundable, dimensionable, elevatable],
   props: {
     tag: {
       type: String,
@@ -26,6 +27,7 @@ export default Vue.extend({
         {
           'su-sheet--outlined': this.outlined
         },
+        this.themeableClass,
         this.colorableClasses,
         this.roundableClasses,
         this.elevatableClasses

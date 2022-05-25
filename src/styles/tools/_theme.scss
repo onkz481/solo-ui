@@ -1,0 +1,8 @@
+@mixin set-theme($component) {
+  .theme--light.#{$component} {
+    @content ($theme-light);
+  }
+  .theme--dark.#{$component} {
+    @content ($theme-dark);
+  }
+}

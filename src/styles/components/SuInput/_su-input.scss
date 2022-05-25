@@ -1,3 +1,5 @@
+@import './variables';
+
 .su-input {
   display: flex;
   flex: 1 1 auto;
@@ -129,27 +131,8 @@
   }
 }
 
-.su-app--light {
-  .su-input {
-    .su-input__details {
-      color: hsla(0,0%,0%,.7);
-    }
-  }
-  .su-input:not(.su-input--is-error){
-    .su-input__prepend-outer, .su-input__prepend-inner, .su-input__append-outer, .su-input__append-inner {
-      color: hsla(0,0%,0%,.7);
-    }
-  }
-}
-.su-app--dark {
-  .su-input {
-    .su-input__details {
-      color: hsla(0,0%,100%,.7);
-    }
-  }
-  .su-input:not(.su-input--is-error){
-    .su-input__prepend-outer, .su-input__prepend-inner, .su-input__append-outer, .su-input__append-inner {
-      color: hsla(0,0%,100%,.7);
-    }
+@include set-theme(su-input) using ($material) {
+  .su-input__details {
+    color: map-deep-get($material, 'inputs', 'color');
   }
 }

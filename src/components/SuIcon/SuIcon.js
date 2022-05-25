@@ -1,11 +1,13 @@
 // mixins
+import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
+import sizeable from '../../mixins/sizeable'
 
 import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuIcon',
-  mixins: [colorable],
+  mixins: [themeable, colorable, sizeable],
   props: {
     color: {
       type: String,
@@ -30,7 +32,9 @@ export default Vue.extend({
     },
     classes(){
       return [
+        this.themeableClass,
         this.colorableClasses,
+        this.sizeableClasses,
         {
           'su-icon--is-disabled': this.disabled
         }

@@ -46,17 +46,8 @@
   }
 }
 
-.su-app--light {
-  .su-tab {
-    &:not(.su-tab--active) {
-      color: hsla(0,0%,0%,.6);
-    }
-  }
-}
-.su-app--dark {
-  .su-tab {
-    &:not(.su-tab--active) {
-      color: hsla(0,0%,100%,.6);
-    }
+@include set-theme(su-tab) using ($material) {
+  &:not(.su-tab--active) {
+    color: map-deep-get($material, 'tabs', 'color');
   }
 }

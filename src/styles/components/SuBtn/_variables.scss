@@ -1,9 +1,7 @@
-$btn-bg-color: $app-bg-color;
-$btn-color: $app-font-color;
+@import '../../styles.scss';
 
 $btn-border-radius: 4px;
 $btn-rounded-border-radius: 6px;
-
 $btn-icon-padding: 12px;
 
 $btn-sizes: (

@@ -1,7 +1,14 @@
-code {
-  border-radius: 3px;
-  padding: 0.1rem 0.5rem;
-  font-family: inherit;
-  font-size: 0.85em;
-  background-color: $app-bg-color-lighten-1;
+.su-app {
+  code {
+    border-radius: 3px;
+    padding: 0.1rem 0.5rem;
+    font-family: inherit;
+    font-size: 0.85em;
+  }
+}
+
+@include set-theme(su-app) using ($material) {
+  code {
+    background-color: map-deep-get($material, 'elements', 'code');
+  }
 }

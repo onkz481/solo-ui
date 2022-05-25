@@ -3,6 +3,10 @@ import SuSheet from '../SuSheet'
 import { SuCard } from '../SuCard'
 import { SuTransition } from '../SuTransition'
 
+// mixins
+import themeable from '../../mixins/themeable'
+import { inject as RegistrableInject } from '../../mixins/registrable'
+
 // directives
 import ClickOutside from '../../directives/ClickOutside'
 
@@ -10,9 +14,15 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuNav',
+  inject: {
+    application: {
+      default: null
+    }
+  },
   directives: {
     ClickOutside
   },
+  mixins: [RegistrableInject('application'), themeable],
   provide(){
     return {
       isInNav: true
@@ -34,6 +44,7 @@ export default Vue.extend({
     rootClasses(){
       return [
         'su-nav',
+        this.themeableClass,
         {
           'su-nav--is-narrow': this.$soloui.layout.narrow
         }
@@ -66,6 +77,9 @@ export default Vue.extend({
       this.drawer = this.value
     }
   },
+  created(){
+    this.application.register('nav', this)
+  },
   mounted(){
     this.initialize()
   },
@@ -91,7 +105,11 @@ export default Vue.extend({
     },
     genFixed(){
       return this.$createElement('div', {
-        staticClass: 'su-nav__fixed'
+        staticClass: 'su-nav__fixed',
+        style: {
+          top: `${this.$soloui.layout.header.height}px`,
+          height: `calc(100vh - ${this.$soloui.layout.header.height}px)`
+        }
       }, [
         this.genScroll()
       ])

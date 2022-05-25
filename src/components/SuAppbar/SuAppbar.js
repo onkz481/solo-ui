@@ -20,12 +20,12 @@ export default SuSheet.extend({
   computed: {
     classes(){
       return [
+        ...SuSheet.options.computed.classes.call(this),
         'su-appbar',
         {
           'su-appbar--dense': this.dense,
           'su-appbar--prominent': this.prominent
-        },
-        ...SuSheet.options.computed.classes.call(this)
+        }
       ]
     },
     styles(){
