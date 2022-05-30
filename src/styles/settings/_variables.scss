@@ -1,0 +1,40 @@
+
+/* --- classes --- */
+//-- rounded
+$rounded: (
+  'none': 0px,
+  'small': 2px,
+  'normal': 4px,
+  'medium': 8px,
+  'large': 16px
+);
+
+/* --- components --- */
+
+/* SuCard */
+$card-padding: 16px;
+
+/* SuBtn */
+$btn-border-radius: 4px;
+$btn-rounded-border-radius: 6px;
+$btn-icon-padding: 12px;
+
+$btn-sizes: (
+  'small': 28,
+  'default': 36,
+  'large': 44
+);
+
+/* SuIcon */
+$icon-sizes: (
+  'small': 16,
+  'default': 24,
+  'large': 32
+);
+
+/* SuLabel */
+$label-sizes: (
+  'small': 12,
+  'default': 16,
+  'large': 20
+);

@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuListItemOverline.scss'
+
 export default Vue.extend({
   name: 'SuListItemOverline',
   computed: {

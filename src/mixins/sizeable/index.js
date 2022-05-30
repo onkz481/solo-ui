@@ -12,7 +12,7 @@ export default {
         'su-size--small': this.small,
         'su-size--default': this.sizeableDefault,
         'su-size--large': this.large,
-      };
+      }
     }
   }
 }

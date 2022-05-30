@@ -1,0 +1,19 @@
+@import '../../styles/styles.scss';
+
+.su-label {
+  display: inline-flex;
+  align-items: center;
+  flex: 1 1 auto;
+
+  @each $key, $val in $label-sizes {
+    &.su-size--#{'' + $key} {
+      font-size: #{$val}px;
+    }
+  }
+
+  transition: $priamry-transition;
+}
+
+@include set-theme(su-label) using ($material) {
+  color: map-deep-get($material, 'labels', 'color');
+}

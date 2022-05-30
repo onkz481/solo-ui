@@ -1,0 +1,29 @@
+@import '../../styles/styles.scss';
+
+.su-divider {
+  border: solid;
+  z-index: 1;
+
+  &--horizontal {
+    display: block;
+    flex: 1 1 0;
+    max-width: 100%;
+    height: 0;
+    border-width: thin 0 0 0;
+    transition: inherit;
+  }
+
+  &--vertical {
+    display: inline-flex;
+    align-self: stretch;
+    margin: 0 -1px;
+    height: inherit;
+    width: 0;
+    vertical-align: text-bottom;
+    border-width: 0 thin 0 0;
+  }
+}
+
+@include set-theme(su-divider) using ($material) {
+  border-color: map-deep-get($material, 'dividers', 'color');
+}

@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuCardActions.scss'
+
 export default Vue.extend({
   name: 'SuCardActions',
   render(h){

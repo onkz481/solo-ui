@@ -1,3 +1,6 @@
+// styles
+import './SuBtn.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
@@ -44,7 +47,7 @@ export default Vue.extend({
     },
     classes(){
       return [
-        'su-btn__reset',
+        'su-btn',
         ...routable.options.computed.classes.call(this),
         this.themeableClass,
         this.colorableClasses,
@@ -88,31 +91,14 @@ export default Vue.extend({
         staticClass: 'su-btn--loading-animation'
       })
     },
-    onClick(e){
-      this.$emit('click', e);
-    }
   },
   render(h){
-    const tag = this.to ? 'router-link' : this.tag
+    const data = this.genData()
 
-    const data = {
-      staticClass: 'su-btn',
-      attrs: {
-        type: 'button'
-      },
-      class: this.classes,
-      style: this.styles,
-      props: {
-        disabled: this.disabled || this.loading
-      },
-      on: {
-        click: this.onClick
-      }
-    }
+    data.attrs.type = 'button'
+    data.attrs.disabled = this.disabled
 
-    if( this.to ) data.props.to = this.to
-
-    return h(tag, data, [
+    return h(this.genTag(), data, [
       this.loading ? this.genLoader() : this.genContent()
     ])
   }

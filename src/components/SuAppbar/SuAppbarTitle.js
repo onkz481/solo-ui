@@ -9,21 +9,14 @@ export default Vue.extend({
   computed: {
     classes(){
       return [
+        'su-appbar-title',
         ...routable.options.computed.classes.call(this),
-        'su-appbar-title'
       ]
     }
   },
   render(h){
-    const tag = this.isRoute ? 'router-link' : this.tag
+    const data = this.genData()
 
-    const data = {
-      props: {},
-      class: this.classes
-    }
-
-    if( this.to ) data.props.to = this.to
-
-    return h(tag, data, this.$slots.default)
+    return h(this.genTag(), data, this.$slots.default)
   }
 })

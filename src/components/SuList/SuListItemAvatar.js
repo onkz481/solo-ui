@@ -1,3 +1,6 @@
+// styles
+import './SuListItemAvatar.scss'
+
 // components
 import { SuAvatar } from '../SuAvatar'
 

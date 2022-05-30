@@ -6,7 +6,7 @@
 
 @mixin set-scrollbar($color){
   &::-webkit-scrollbar {
-    width: $app-scrollbar-w;
+    width: 16px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: $color;

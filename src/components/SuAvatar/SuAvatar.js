@@ -1,3 +1,6 @@
+// styles
+import './SuAvatar.scss'
+
 // mixins
 import colorable from '../../mixins/colorable'
 import roundable from '../../mixins/roundable'

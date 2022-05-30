@@ -1,11 +1,8 @@
 @import './imports/index';
-@import './tools/index';
-@import './settings/index';
-@import './utilities/index';
+@import './styles.scss';
 
 @import './classes/index';
 @import './elements/index';
-@import './components/index';
 
 html {
   * {
@@ -14,13 +11,9 @@ html {
     box-sizing: border-box;
   }
 
-  width: 100%;
   font-size: 16px;
-  font-family: $heading-font-family;
-  text-transform: none;
 
   body {
-    width: 100%;
-    height: 100%;
+    @include set-headings-font('body-1');
   }
 }

@@ -1,5 +1,8 @@
 import { vueUidMixin } from 'vue-uid'
 
+// styles
+import './SuTextField.scss'
+
 // mixins
 import roundable from '../../mixins/roundable'
 
@@ -16,7 +19,7 @@ export default SuInput.extend({
     },
     clearIcon: {
       type: String,
-      default: 'clear'
+      default: 'mdi-close'
     },
     rounded: {
       type: String,
@@ -24,7 +27,12 @@ export default SuInput.extend({
     }
   },
   data: () => ({
-    labelOffsetWidth: 0,
+    legendStyles: {
+      width: 0
+    },
+    labelStyles: {
+      left: 0
+    }
   }),
   computed: {
     classes(){
@@ -44,50 +52,64 @@ export default SuInput.extend({
     formStyles(){
       return {}
     },
-    legendWidth(){
-      return {
-        width: this.labelOffsetWidth + 'px'
-      }
-    },
     isMessages(){
       return this.isAutoDetails ? (this.hasMessages || this.isFocus) : !this.hideDetails
     }
   },
   updated(){
-    this.labelOffsetWidth = this.hasLabel && ( this.isFocus || this.isValue ) ? (this.$refs.label.$el.offsetWidth * 0.75) + 10 : 0;
+    this.setLegendStyles()
+    this.setLabelStyles()
   },
   methods: {
+    clear(){
+      this.internalValue = ''
+    },
     genDefaultSlot(){
       return [
-        this.genSlot('prepend', 'inner'),
+        this.genSlot('prependInner'),
         this.genFieldset(),
         this.genTextFieldSlot(),
-        this.clearable ? this.genSlot('append', 'inner', this.clearIcon, {
+        this.clearable ? this.genSlot('appendInner', this.clearIcon, {
           on: {
             click: this.clear
           }
-        }) : this.genSlot('append', 'inner')
+        }) : this.genSlot('appendInner')
       ]
     },
     genFieldset(){
       const legend = this.$createElement('legend', {
-        style: this.legendWidth,
+        style: {
+          width: `${this.legendStyles.width}px`
+        },
         ref: 'legend'
       })
 
       return this.$createElement('fieldset', {
         attrs: {
           'aria-hidden': 'true'
-        }
-      }, [legend])
+        },
+        ref: 'fieldset'
+      }, [
+        legend
+      ])
+    },
+    genLabel(){
+      const label = SuInput.options.methods.genLabel.call(this)
+
+      if( !label ) return
+
+      label.data.style = {
+        left: `${this.labelStyles.left}px`
+      }
+
+      return label
     },
     genTextFieldSlot(){
       return this.$createElement('div', {
         staticClass: 'su-text-field__slot'
       }, [
         this.genLabel(),
-        this.genForm('input', { type: 'text' }),
-        this.genDetails()
+        this.genForm('input', { type: 'text' })
       ])
     },
     genForm(form = 'input', attr){
@@ -130,8 +152,38 @@ export default SuInput.extend({
 
       e.preventDefault()
     },
-    clear(){
-      this.internalValue = ''
+    setLabelStyles(){
+      if( !this.hasLabel ) return
+
+      let left = 0
+
+      const legendWidth = (this.$refs.label.$el.offsetWidth * 0.75) + 10
+      const labelWidth = this.$refs.label.$el.offsetWidth * 0.75
+      const offsetLeft = (legendWidth - labelWidth) / 2
+
+      if( !this.isActive ){
+        left = 0
+
+      } else if( !this.$refs.prependInner ){
+        left = offsetLeft
+      } else {
+        const { width, marginRight } = window.getComputedStyle(this.$refs.prependInner)
+
+        left = -((parseInt(width) + parseInt(marginRight)) - offsetLeft)
+      }
+
+      this.labelStyles.left = left
+    },
+    setLegendStyles(){
+      if( !this.hasLabel ) return
+
+      if( !this.isActive ){
+        this.legendStyles.width = 0
+
+        return
+      }
+
+      this.legendStyles.width = (this.$refs.label.$el.offsetWidth * 0.75) + 10
     }
   }
 })

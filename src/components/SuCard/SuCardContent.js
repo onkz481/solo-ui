@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuCardContent.scss'
+
 export default Vue.extend({
   name: 'SuCardContent',
   render(h){

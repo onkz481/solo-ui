@@ -1,3 +1,6 @@
+// styles
+import './SuRadioGroup.scss'
+
 // components
 import { SuItemGroupBase } from "../SuItemGroup/SuItemGroup"
 import { SuInput } from "../SuInput"

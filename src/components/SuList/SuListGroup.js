@@ -1,3 +1,6 @@
+// styles
+import './SuListGroup.scss'
+
 // mixins
 import colorable from '../../mixins/colorable'
 import toggleable from '../../mixins/toggleable'
@@ -43,7 +46,7 @@ export default Vue.extend({
     },
     appendIcon: {
       type: String,
-      default: 'expand_more'
+      default: 'mdi-chevron-down'
     },
     rounded: {
       type: String,

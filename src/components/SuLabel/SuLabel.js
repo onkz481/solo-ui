@@ -1,3 +1,6 @@
+// styles
+import './SuLabel.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'

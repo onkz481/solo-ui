@@ -1,3 +1,6 @@
+// styles
+import './SuCheckbox.scss'
+
 // mixins
 import selectable, { genInput, genInputSelection } from '../../mixins/selectable'
 
@@ -9,11 +12,11 @@ export default selectable.extend({
   props: {
     offIcon: {
       type: String,
-      default: 'check_box_outline_blank'
+      default: 'mdi-checkbox-blank-outline'
     },
     onIcon: {
       type: String,
-      default: 'check_box'
+      default: 'mdi-checkbox-outline'
     }
   },
   methods: {

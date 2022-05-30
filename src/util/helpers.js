@@ -1,4 +1,7 @@
 
+// URL正規表現
+export const regExpForUrl = 'https?://[\\w/:%#\\$&\\?\\(\\)~\\.=\\+\\-]+'
+
 export const regExpForGlobalVal = 'normal|inherit|initial|revert|unset'
 // 小数点を含む数値に一致する正規表現
 export const regExpForDecNum = '[+-]?(?:\\d*\\.)?\\d+(?:(?<!(\\.\\d+))\\.\\d*)?'
@@ -70,6 +73,29 @@ export function isElement(obj){
   }
 }
 
+// 文字列をケバブケースに変換
+export function toKebabCase(str){
+  if (typeof str !== 'string') return str;
+
+  str = str.replace(/^ *?[A-Z]/, function(allStr) { return allStr.toLowerCase(); });
+  str = str.replace(/_/g, '-');
+  str = str.replace(/ *?[A-Z]/g, function(allStr) { return '-' + allStr.replace(/ /g, '').toLowerCase(); });
+  return str;
+}
+
+// 文字列をキャメルケースに変換
+export function toCamelCase(str){
+  if (typeof str !== 'string') return str;
+
+  str = str.trim().split('-')
+  str = str.map((str, index) => {
+    if( index === 0 ) return str
+    return strUpperFirst(str)
+  })
+  
+  return str.join('')
+}
+
 // 先頭文字を大文字に変換して返す
 export function strUpperFirst(str){
   if( typeof str !== 'string' || str.length <= 0 ) return
@@ -117,4 +143,11 @@ export function remToPx(rem){
   rem = parseFloat(rem)
   
   return rootSize * rem
+}
+
+// 通常のURL判定
+export function isGlobalLink(url){
+  const regex = new RegExp(regExpForUrl)
+
+  return regex.test(url)
 }

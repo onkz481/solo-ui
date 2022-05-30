@@ -1,3 +1,6 @@
+// styles
+import './SuDataList.scss'
+
 // components
 import { SuBtn } from '../SuBtn'
 

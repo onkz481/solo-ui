@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuECode.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 

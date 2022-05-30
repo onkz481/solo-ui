@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuListItemSubtitle.scss'
+
 export default Vue.extend({
   name: 'SuListItemSubtitle',
   computed: {

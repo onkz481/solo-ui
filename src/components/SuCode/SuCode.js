@@ -1,5 +1,8 @@
 import Prism from 'prismjs'
 
+// styles
+import './SuCode.scss'
+
 //components
 import SuSheet from '../SuSheet'
 import { SuBtn } from '../SuBtn'
@@ -64,7 +67,7 @@ export default SuSheet.extend({
     },
     genStatus(){
       const copyIcon = this.$createElement(SuIcon, {
-      }, ['content_copy'])
+      }, ['mdi-content-copy'])
 
       const copyBtn = this.$createElement(SuBtn, {
         props: {

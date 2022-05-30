@@ -1,0 +1,55 @@
+@import './themes/light';
+@import './themes/dark';
+
+.su-code {
+  display: flex;
+  padding: 12px 8px 12px 16px;
+
+  pre {
+    flex: 1 1 auto;
+    min-height: 24px;
+    overflow: auto;
+  }
+  code {
+    border-radius: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit !important;
+  }
+  pre, code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .su-code__status {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 8px;
+
+    .su-btn {
+      align-self: flex-end;
+    }
+    .su-label {
+      flex: 0 0 auto;
+      align-self: center;
+      text-align: right;
+    }
+  }
+}

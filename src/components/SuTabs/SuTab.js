@@ -1,3 +1,7 @@
+// styles
+import './SuTab.scss'
+
+// components
 import { SuItemBase } from '../SuItemGroup/SuItem'
 
 //mixins

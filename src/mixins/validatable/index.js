@@ -57,7 +57,7 @@ export default Vue.extend({
         case this.internalErrorMessages.length > 0:
           return this.internalErrorMessages
         case this.validationErrorMessages.length > 0:
-          return this.validationErrorMessages
+          return this.validationErrorMessages.slice(0, this.errorCount)
         case this.internalMessages.length > 0:
           return this.internalMessages
         default:

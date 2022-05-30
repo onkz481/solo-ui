@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuListItemContent.scss'
+
 export default Vue.extend({
   name: 'SuListItemContent',
   render(h){

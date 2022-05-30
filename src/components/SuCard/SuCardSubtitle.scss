@@ -1,0 +1,11 @@
+@import '../../styles/styles.scss';
+
+.su-card__subtitle {
+    @include set-headings-font('subtitle-1');
+
+    padding: $card-padding;
+
+    +.su-card__content {
+      padding-top: calc(#{$card-padding} / 2);
+    }
+}

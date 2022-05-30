@@ -1,3 +1,6 @@
+// styles
+import './SuWindow.scss'
+
 // components
 import { SuItemGroupBase } from "../SuItemGroup/SuItemGroup"
 import { SuIcon } from '../SuIcon'
@@ -9,7 +12,7 @@ import Touch from '../../directives/Touch'
 import { getSlot, strUpperFirst } from '../../util/helpers'
 
 export default SuItemGroupBase.extend({
-  name: 'su-window',
+  name: 'SuWindow',
   props: {
     prevIcon: {
       type: String,
@@ -45,10 +48,10 @@ export default SuItemGroupBase.extend({
   }),
   computed: {
     computedPrevIcon(){
-      return this.prevIcon ? this.prevIcon : this.vertical ? 'expand_less' : 'chevron_left'
+      return this.prevIcon ? this.prevIcon : this.vertical ? 'mdi-chevron-up' : 'mdi-chevron-left'
     },
     computedNextIcon(){
-      return this.nextIcon ? this.nextIcon : this.vertical ? 'expand_more' : 'chevron_right'
+      return this.nextIcon ? this.nextIcon : this.vertical ? 'mdi-chevron-down' : 'mdi-chevron-right'
     },
     hasPrev(){
       return this.continuing || this.internalIndex > 0

@@ -1,3 +1,6 @@
+// styles
+import './SuTabs.scss'
+
 // components
 import { SuSlideGroupBase } from "../SuSlideGroup/SuSlideGroup"
 import SuTabsSlider from "./SuTabsSlider"

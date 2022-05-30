@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuOverlay.scss'
+
 // helpers
 import { insertBefore } from '../../util/helpers'
 

@@ -1,3 +1,6 @@
+// styles
+import './SuHeader.scss'
+
 // components
 import { SuAppbar } from '../SuAppbar'
 

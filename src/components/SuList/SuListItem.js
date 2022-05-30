@@ -1,3 +1,6 @@
+// styles
+import './SuListItem.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
@@ -25,8 +28,6 @@ export default Vue.extend({
     }
   },
   data: () => ({
-    hasIcon: false,
-    hasIconIsFirst: false,
     internalClass: 'su-list-item--active'
   }),
   computed: {
@@ -38,12 +39,10 @@ export default Vue.extend({
         this.isActive && this.colorableClasses,
         {
           'su-list-item--is-link': this.isLink,
-          'su-list-item--has-icon': this.hasIcon,
-          'su-list-item--has-icon--is-first': this.hasIconIsFirst,
           'su-list-item--two-line': this.twoLine,
           'su-list-item--three-line': this.threeLine
         }
-      ];
+      ]
     },
     styles(){
       return [
@@ -51,24 +50,7 @@ export default Vue.extend({
       ]
     }
   },
-  mounted(){
-    this.initialize()
-  },
   methods: {
-    initialize(){
-      if( this.$slots.default !== undefined ){
-        this.hasIcon = this.$slots.default.some(vnode => vnode.child && vnode.child.$options._componentTag === 'su-list-item-icon');
-
-        if( this.$slots.default[0].child && this.$slots.default[0].child.$options._componentTag === 'su-list-item-icon' ){
-          this.hasIconIsFirst = true;
-
-          this.$slots.default[0].child.isFirst = true;
-        }
-      }
-    },
-    onClick(){
-      this.$emit('click')
-    },
     toggle(){
       if( this.to && this.toggleValue === undefined )
         this.isActive = !this.isActive
@@ -77,19 +59,8 @@ export default Vue.extend({
     }
   },
   render(h){
-    const tag = this.to ? 'router-link' : this.tag
-    
-    const data = {
-      class: this.classes,
-      style: this.styles,
-      props: {},
-      on: {
-        click: this.onClick
-      }
-    }
-    
-    if( this.to ) data.props.to = this.to
+    const data = this.genData()
 
-    return h(tag, data, this.$slots.default)
+    return h(this.genTag(), data, this.$slots.default)
   }
 })

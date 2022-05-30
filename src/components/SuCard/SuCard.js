@@ -1,3 +1,6 @@
+// styles
+import './SuCard.scss'
+
 // mixins
 import linkable from '../../mixins/linkable'
 

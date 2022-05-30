@@ -1,3 +1,6 @@
+// styles
+import './SuRadio.scss'
+
 // mixins
 import colorable from '../../mixins/colorable'
 import { factory as GroupableFactory } from '../../mixins/groupable'
@@ -22,11 +25,11 @@ export default SuItemBase.extend({
     },
     offIcon: {
       type: String,
-      default: 'radio_button_unchecked'
+      default: 'mdi-radiobox-blank'
     },
     onIcon: {
       type: String,
-      default: 'radio_button_checked'
+      default: 'mdi-radiobox-marked'
     }
   },
   data: () => ({

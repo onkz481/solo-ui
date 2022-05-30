@@ -5,6 +5,10 @@ export default {
       type: [String, Object],
       default: undefined
     },
+    href: {
+      type: String,
+      default: undefined
+    },
     link: {
       type: Boolean,
       default: false

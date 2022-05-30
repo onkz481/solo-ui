@@ -1,7 +1,10 @@
+import Vue from 'vue'
+
+// styles
+import './SuItemGroup.scss'
+
 // mixins
 import modelable from '../../mixins/modelable'
-
-import Vue from 'vue'
 
 export const SuItemGroupBase = Vue.extend({
   mixins: [modelable],

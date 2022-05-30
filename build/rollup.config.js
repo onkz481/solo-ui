@@ -1,19 +1,19 @@
 // rollup.config.js
-import fs from 'fs';
-import path from 'path';
-import vue from 'rollup-plugin-vue';
-import alias from '@rollup/plugin-alias';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import minimist from 'minimist';
+import fs from 'fs'
+import path from 'path'
+import vue from 'rollup-plugin-vue'
+import alias from '@rollup/plugin-alias'
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import babel from '@rollup/plugin-babel'
+import { terser } from 'rollup-plugin-terser'
+import minimist from 'minimist'
 
-// 2021-01-14 install
-import scss from 'rollup-plugin-scss';
-// 2021-01-18 install
-import eslint from '@rollup/plugin-eslint';
+// 2022-01-14 install
+import scss from 'rollup-plugin-scss'
+// 2022-01-18 install
+import eslint from '@rollup/plugin-eslint'
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -47,7 +47,7 @@ const baseConfig = {
       }),
       eslint({
         fix: true
-      }),
+      })
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
@@ -100,6 +100,7 @@ if (!argv.format || argv.format === 'es') {
       file: 'dist/solo-ui.esm.js',
       format: 'esm',
       exports: 'named',
+      inlineDynamicImports: true
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -134,6 +135,7 @@ if (!argv.format || argv.format === 'cjs') {
       name: 'SoloUi',
       exports: 'auto',
       globals,
+      inlineDynamicImports: true
     },
     plugins: [
       replace(baseConfig.plugins.replace),
@@ -163,6 +165,7 @@ if (!argv.format || argv.format === 'iife') {
       name: 'SoloUi',
       exports: 'auto',
       globals,
+      inlineDynamicImports: true
     },
     plugins: [
       replace(baseConfig.plugins.replace),

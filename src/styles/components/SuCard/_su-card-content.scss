@@ -1,7 +1,0 @@
-@import './variables';
-
-.su-card__content {
-    @include set-headings-font('body-2');
-
-    padding: $card-padding;
-}

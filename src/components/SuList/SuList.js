@@ -1,3 +1,6 @@
+// styles
+import './SuList.scss'
+
 // components
 import SuSheet from '../SuSheet'
 

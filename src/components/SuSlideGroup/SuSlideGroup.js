@@ -1,3 +1,6 @@
+// styles
+import './SuSlideGroup.scss'
+
 // components
 import { SuIcon } from '../SuIcon'
 
@@ -23,11 +26,11 @@ export const SuSlideGroupBase = SuItemGroupBase.extend({
     },
     prevIcon: {
       type: String,
-      default: 'chevron_left'
+      default: 'mdi-chevron-left'
     },
     nextIcon: {
       type: String,
-      default: 'chevron_right'
+      default: 'mdi-chevron-right'
     },
     showArrows: {
       type: Boolean,

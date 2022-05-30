@@ -1,11 +1,14 @@
+import Vue from 'vue'
+
+// styles
+import './SuSheet.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import roundable from '../../mixins/roundable'
 import dimensionable from '../../mixins/dimensionable'
 import elevatable from '../../mixins/elevatable'
-
-import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuSheet',

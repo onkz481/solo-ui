@@ -1,3 +1,6 @@
+// styles
+import './SuTextarea.scss'
+
 // components
 import { SuTextField } from '../SuTextField'
 

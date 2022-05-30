@@ -1,0 +1,55 @@
+@import '../../styles/styles.scss';
+
+.su-tab {
+  @include set-headings-font('button');
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  max-width: 360px;
+  height: 100%;
+
+  .su-tab__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 16px;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:before {
+      background-color: currentColor;
+      border-radius: inherit;
+      bottom: 0;
+      color: inherit;
+      content: "";
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity .2s cubic-bezier(.4,0,.6,1);
+    }
+    &:hover:before {
+      opacity: .08;
+    }
+
+    .su-tab__content-inner {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+@include set-theme(su-tab) using ($material) {
+  &:not(.su-tab--active) {
+    color: map-deep-get($material, 'tabs', 'color');
+  }
+}

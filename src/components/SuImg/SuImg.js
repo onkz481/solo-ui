@@ -1,7 +1,10 @@
+import Vue from 'vue'
+
+// styles
+import './SuImg.scss'
+
 // mixins
 import dimensionable from '../../mixins/dimensionable'
-
-import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuImg',

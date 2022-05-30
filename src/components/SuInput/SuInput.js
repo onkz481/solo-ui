@@ -1,3 +1,6 @@
+// styles
+import './SuInput.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
@@ -9,7 +12,7 @@ import { SuTransition } from '../SuTransition'
 import { SuLabel } from '../SuLabel'
 
 //helpers
-import { strUpperFirst } from '../../util/helpers'
+import { toKebabCase } from '../../util/helpers'
 
 import Vue from 'vue'
 
@@ -17,6 +20,10 @@ export default Vue.extend({
   name: 'SuInput',
   mixins: [themeable, validatable, colorable],
   props: {
+    appendIcon: {
+      type: String,
+      default: undefined
+    },
     appendInnerIcon: {
       type: String,
       default: undefined
@@ -45,6 +52,10 @@ export default Vue.extend({
       type: String,
       default: undefined
     },
+    prependIcon: {
+      type: String,
+      default: undefined
+    },
     prependInnerIcon: {
       type: String,
       default: undefined
@@ -59,7 +70,7 @@ export default Vue.extend({
     },
   },
   data: () => ({
-    isFocus: false,
+    isFocus: false
   }),
   computed: {
     classes(){
@@ -69,16 +80,8 @@ export default Vue.extend({
         {
           'su-input--has-label': this.hasLabel,
           'su-input--is-focus': this.isFocus,
-          'su-input--is-active': this.isValue || this.isFocus,
+          'su-input--is-active': this.isActive,
           'su-input--is-error': this.hasError,
-          'su-input--is-prepend-inner': this.$slots.prependInner || this.prependInnerIcon,
-          'su-input--is-prepend-inner-event': typeof this.$listeners['click:prepend-inner'] === 'function',
-          'su-input--is-prepend-outer': this.$slots.prependOuter || this.prependOuterIcon,
-          'su-input--is-prepend-outer-event': typeof this.$listeners['click:prepend-outer'] === 'function',
-          'su-input--is-append-inner': this.$slots.appendInner || this.appendInnerIcon,
-          'su-input--is-append-inner-event': typeof this.$listeners['click:append-inner'] === 'function',
-          'su-input--is-append-outer': this.$slots.appendOuter || this.appendOuterIcon,
-          'su-input--is-append-outer-event': typeof this.$listeners['click:append-outer'] === 'function',
           'su-input--hide-details': !this.isDetails,
           ...this.errorClasses
         }
@@ -106,6 +109,9 @@ export default Vue.extend({
     hasLabel(){
       return this.$slots.label || this.label
     },
+    isActive(){
+      return this.isValue || this.isFocus
+    },
     isValue(){
       return this.internalValue && ( this.internalValue.length > 0 )
     },
@@ -122,15 +128,10 @@ export default Vue.extend({
   methods: {
     genContent(){
       return [
-        this.genContainer()
+        this.genSlot('prepend'),
+        this.genInputSlotWrapper(),
+        this.genSlot('append'),
       ]
-    },
-    genContainer(){
-      return this.$createElement('div', {
-        staticClass: 'su-input__container'
-      }, [
-        this.genInputSlotOuter()
-      ])
     },
     genLabel(){
       if( !this.hasLabel ) return
@@ -153,8 +154,8 @@ export default Vue.extend({
         }
       }, iconName)
     },
-    genSlot(type, position, iconName, attrs = {}){
-      const slotName = `${type}${strUpperFirst(position)}`
+    genSlot(type, iconName, attrs = {}){
+      const slotName = type
 
       if( !this.$slots[slotName] && !this[`${slotName}Icon`] && !iconName ) return
 
@@ -163,49 +164,39 @@ export default Vue.extend({
         (this[`${slotName}Icon`] || iconName) ? this.genIcon(iconName ? iconName : this[`${slotName}Icon`]) : []
 
       return this.$createElement('div', Object.assign({
-        staticClass: `su-input__${type}-${position}`,
+        staticClass: `su-input__${toKebabCase(type)}`,
         on: {
           click: (e) => {
-            this.$emit(`click:${type}-${position}`, e)
+            this.$emit(`click:${toKebabCase(type)}`, e)
           }
-        }
+        },
+        ref: type
       }, attrs), [slot])
     },
     genInputSlot(){
       return this.$createElement('div', {
-        staticClass: 'su-input__slot'
-      }, [
-        this.genLabel(),
-        this.$slots.default,
-        this.genDetails()
-      ])
-    },
-    genInputSlotInner(){
-      return this.$createElement('div', {
-        staticClass: 'su-input__slot-inner',
+        staticClass: 'su-input__slot',
         on: {
           click: this.onClick,
           mousedown: this.onMousedown,
           mouseup: this.onMouseup
-        }
+        },
+        ref: 'inputSlot'
       }, [
         this.genDefaultSlot()
       ])
     },
-    genInputSlotOuter(){
+    genInputSlotWrapper(){
       return this.$createElement('div', {
-        staticClass: 'su-input__slot-outer'
+        staticClass: 'su-input__slot-wrapper'
       }, [
-        this.genSlot('prepend', 'outer'),
-        this.genInputSlotInner(),
-        this.genSlot('append', 'outer'),
+        this.genInputSlot(),
+        this.genDetails()
       ])
     },
     genDefaultSlot(){
       return [
-        this.genSlot('prepend', 'inner'),
-        this.genInputSlot(),
-        this.genSlot('append', 'inner')
+        this.$slots.default
       ]
     },
     genDetails(){

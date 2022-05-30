@@ -1,9 +1,18 @@
+import Vue from 'vue'
+
+// styles
+import './SuIcon.scss'
+
 // mixins
 import themeable from '../../mixins/themeable'
 import colorable from '../../mixins/colorable'
 import sizeable from '../../mixins/sizeable'
 
-import Vue from 'vue'
+// components
+import { SuImg } from '../SuImg'
+
+//helpers
+import { toCamelCase } from '../../util/helpers'
 
 export default Vue.extend({
   name: 'SuIcon',
@@ -24,12 +33,16 @@ export default Vue.extend({
     disabled: {
       type: Boolean,
       default: false
+    },
+    src: {
+      type: [String, Object],
+      default: undefined
     }
   },
+  data: () => ({
+    icon: null
+  }),
   computed: {
-    isImg(){
-      return this.$slots.default && this.$slots.default[0].tag === 'img'
-    },
     classes(){
       return [
         this.themeableClass,
@@ -48,22 +61,79 @@ export default Vue.extend({
   },
   methods: {
     genIcon(){
-      const tag = this.isImg ? 'div' : 'i'
+      if( this.src ) return this.genImg()
 
-      return this.$createElement(tag, {
+      if( !this.$slots.default || !this.$slots.default[0] || !this.$slots.default[0].text ) return
+
+      const icon = this.$slots.default[0].text.trim()
+
+      if( this.isSvgPath(icon) ) return this.genSvg(icon)
+
+      switch( this.$soloui.icon.use ){
+        case 'mdiSvg':
+          return this.genMdiSvg(icon)
+        default:
+          return icon
+      }
+    },
+    genImg(){
+      return this.$createElement(SuImg, {
         class: [
-          this.isImg ? 'su-icon__img' : this.outlined ? 'material-icons-outlined' : 'material-icons'
+          'su-icon__img'
         ],
-      }, this.$slots.default)
+        props: {
+          src: this.src
+        }
+      })
+    },
+    genMdiSvg(icon){
+      const icons = this.$soloui.icon.icons
+      const iconName = toCamelCase(icon)
+
+      if( !Object.keys(icons).includes(iconName) ) return
+
+      return this.genSvg(icons[iconName])
+    },
+    genSvg(d){
+      if( !this.isSvgPath(d) ) return
+
+      const path = this.$createElement('path', {
+        attrs: {
+          d: d
+        }
+      })
+
+      return this.$createElement('svg', {
+        class: [
+          'su-icon__svg'
+        ],
+        attrs: {
+          xmlns: 'http://www.w3.org/2000/svg',
+          viewBox: '0 0 24 24',
+          role: 'img',
+          'aria-hidden': 'true'
+        }
+      }, [
+        path
+      ])
+    },
+    isSvgPath(str){
+      return (/^[mzlhvcsqta]\s*[-+.0-9][^mlhvzcsqta]+/i.test(str) && /[\dz]$/i.test(str) && str.length > 4)
     }
   },
   render(h){
+    const icon = this.genIcon()
+    const isMdi = typeof icon === 'string'
+
     return h('span', {
       staticClass: 'su-icon',
-      class: this.classes,
+      class: [
+        ...this.classes,
+        isMdi && `mdi ${icon}`
+      ],
       style: this.styles
     }, [
-      this.genIcon()
+      !isMdi && icon
     ])
   }
 })

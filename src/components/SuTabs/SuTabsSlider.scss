@@ -1,0 +1,10 @@
+@import '../../styles/styles.scss';
+
+.su-tabs-slider {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  z-index: 1;
+
+  transition: $priamry-transition;
+}

@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+// styles
+import './SuCardTitle.scss'
+
 export default Vue.extend({
   name: 'SuCardTitle',
   render(h){

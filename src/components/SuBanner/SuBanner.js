@@ -1,3 +1,6 @@
+// styles
+import './SuBanner.scss'
+
 // mixins
 import modelable from '../../mixins/modelable'
 

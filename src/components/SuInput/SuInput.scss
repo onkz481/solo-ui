@@ -1,0 +1,103 @@
+@import '../../styles/styles.scss';
+
+.su-input {
+  display: flex;
+  align-items: flex-start;
+  flex: 1 1 auto;
+  max-width: 100%;
+
+  .su-input__prepend, .su-input__append {
+    display: inline-flex;
+  }
+  .su-input__prepend {
+    margin-right: 12px;
+  }
+  .su-input__append {
+    margin-left: 12px;
+  }
+
+  .su-input__slot-wrapper {
+    display: flex;
+    flex-flow: column;
+    flex-grow: 1;
+    border-radius: inherit;
+
+    .su-input__slot {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      border-radius: inherit;
+    }
+
+    .su-label {
+      @include set-headings-font('caption');
+
+      max-height: 14px;
+    }
+
+    .su-input__details {
+      margin-top: 2px;
+      width: 100%;
+      min-height: 12px;
+      overflow: hidden;
+
+      .su-input__messages {
+        .su-input__message {
+          @include set-headings-font('caption');
+          
+          line-height: 1;
+          overflow-wrap: break-word;
+          word-break: break-all;
+          word-wrap: break-word;
+        }
+      }
+    }
+  }
+
+  &.su-input--hide-details {
+    .su-input__container {
+      margin-bottom: 0;
+    }
+  }
+
+  &.su-input--is-focus {
+    fieldset {
+      border-color: inherit !important;
+      border-width: 2px;
+    }
+
+    .su-input__prepend-outer, .su-input__prepend-inner, .su-input__append-outer, .su-input__append-inner {
+      color: inherit !important;
+    }
+  }
+}
+
+.su-input--selection__input {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  color: inherit;
+  
+  margin-right: 8px;
+
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  +.su-label {
+    height: 24px;
+    cursor: pointer;
+  }
+}
+
+@include set-theme(su-input) using ($material) {
+  .su-input__details {
+    color: map-deep-get($material, 'inputs', 'color');
+  }
+}

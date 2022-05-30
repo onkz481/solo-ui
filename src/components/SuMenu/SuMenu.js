@@ -1,10 +1,13 @@
-// Mixins
+// styles
+import './SuMenu.scss'
+
+// mixins
 import roundable from '../../mixins/roundable'
 import elevatable from '../../mixins/elevatable'
 import menuable from '../../mixins/menuable'
 import transitionable from '../../mixins/transitionable'
 
-// Directives
+// directives
 import ClickOutside from '../../directives/ClickOutside'
 
 // helpers
@@ -53,7 +56,7 @@ export default Vue.extend({
       this.$nextTick(() => {
         this.updateDimensions()
 
-        insertBefore(this.$el.parentNode, this.activatorNode[0]['elm'])
+        insertBefore(this.$el.parentNode, this.activatorNode[0]['elm'], this.$el)
         
         if( this.isInNav ){
           insertBefore(document.getElementsByClassName('su-nav__fixed')[0], this.menuContentNode['elm'])

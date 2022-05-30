@@ -1,3 +1,6 @@
+// styles
+import './SuTabsSlider.scss'
+
 // mixins
 import colorable from '../../mixins/colorable'
 

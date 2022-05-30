@@ -1,12 +1,15 @@
 import Vue from 'vue'
 
-// Mixins
+// styles
+import './SuDialog.scss'
+
+// mixins
 import activitable from '../../mixins/activatable'
 import dimensionable from '../../mixins/dimensionable'
 import overlayable from '../../mixins/overlayable';
 import transitionable from '../../mixins/transitionable';
 
-// Directives
+// directives
 import ClickOutside from '../../directives/ClickOutside';
 
 // helpers

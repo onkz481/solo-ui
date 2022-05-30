@@ -1,3 +1,6 @@
+// styles
+import './SuNav.scss'
+
 // components
 import SuSheet from '../SuSheet'
 import { SuCard } from '../SuCard'

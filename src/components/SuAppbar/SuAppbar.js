@@ -1,3 +1,6 @@
+// styles
+import './SuAppbar.scss'
+
 // components
 import SuSheet from '../SuSheet'
 
