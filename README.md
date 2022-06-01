@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="SoloUI Logo" width="240" src="https://user-images.githubusercontent.com/97577643/170927458-0c7e159c-52e6-475f-89d0-e87b3986f290.png">
+  <img alt="SoloUI Logo" width="240" src="https://user-images.githubusercontent.com/97577643/171308917-febb8b10-98e6-466e-8a89-820624537555.png">
 </p>
 
 ## Install & Usage
