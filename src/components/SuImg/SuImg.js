@@ -50,29 +50,18 @@ export default Vue.extend({
         this.dimensionableInlines
       ]
     },
-    imageClasses(){
-      return [
-        {
-          'su-img__image--preload': this.isLoading,
-          'su-img__image--contain': this.contain,
-          'su-img__image--cover': !this.contain,
-        }
-      ]
-    },
-    imageStyles(){
-      return [
-        {
-          'background-image': this.gradient ? `linear-gradient(${this.gradient}), url(${this.src})` : `url(${this.src})`,
-          'background-position': this.position
-        }
-      ]
-    },
     sizerStyle(){
       return [
         this.calcAspectRatio ? {
           paddingBottom: `${(1 / this.calcAspectRatio) * 100}%`
         } : undefined
       ]
+    }
+  },
+  watch: {
+    // [2022/06/03] src props の値が変更されたときに、loadImage() が実行されるよう修正
+    src(){
+      this.loadImage()
     }
   },
   mounted(){
@@ -86,10 +75,21 @@ export default Vue.extend({
       })
     },
     genImage(){
+      // [2022/06/03] class と style の設定を computed から変数に変更
+      const styles = {}
+
+      // [2022/06/03] src の値が undefined の場合、'background-image'が設定されないよう修正
+      if( this.src ) styles['background-image'] = this.gradient ? `linear-gradient(${this.gradient}), url(${this.src})` : `url(${this.src})`
+      styles['background-position'] = this.position
+
       return this.$createElement('div', {
         staticClass: 'su-img__image',
-        class: this.imageClasses,
-        style: this.imageStyles
+        class: {
+          'su-img__image--preload': this.isLoading,
+          'su-img__image--contain': this.contain,
+          'su-img__image--cover': !this.contain,
+        },
+        style: styles
       })
     },
     onLoad(){
@@ -121,6 +121,8 @@ export default Vue.extend({
       this.$emit('error', this.src)
     },
     loadImage(){
+      if( !this.src ) return // [2022/06/03] srcがundefinedの場合、実行されないよう修正
+
       const image = new Image()
       this.image = image
 
@@ -130,6 +132,7 @@ export default Vue.extend({
       image.onerror = this.onError
 
       image.src = this.src
+      
       this.$emit('loadstart', this.src)
     }
   },
