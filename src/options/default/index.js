@@ -29,6 +29,7 @@ export const options = {
     }
   },
   theme: {
-    current: 'light'
+    current: 'system',
+    themes: []
   }
 }
