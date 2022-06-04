@@ -5,7 +5,7 @@
 
 ## Install & Usage
 Please refer to the documentation for installation and usage.  
-[https://onkz481.github.io/pages-test](https://onkz481.github.io/pages-test)
+[https://onkz481.github.io/solo-ui-document](https://onkz481.github.io/solo-ui-document)
 
 
 ## :bookmark_tabs: License
