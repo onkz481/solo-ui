@@ -58,11 +58,7 @@ export default Vue.extend({
 
         insertBefore(this.$el.parentNode, this.activatorNode[0]['elm'], this.$el)
         
-        if( this.isInNav ){
-          insertBefore(document.getElementsByClassName('su-nav__fixed')[0], this.menuContentNode['elm'])
-        } else {
-          insertBeforeAppAbsoluted(this.menuContentNode['elm'])
-        }
+        insertBeforeAppAbsoluted(this.menuContentNode['elm'])
       })
     },
     genActivatorEventListeners(){
@@ -79,12 +75,14 @@ export default Vue.extend({
       }
     },
     genContent(){
+      const left = this.isInNav ? this.calcContentLeft + this.$soloui.layout.gutter : this.calcContentLeft
+
       const contentOptions = {
         staticClass: 'su-menu-content',
         style: [
           {
-            top: this.calcContentTop,
-            left: this.calcContentLeft,
+            top: `${this.calcContentTop}px`,
+            left: `${left}px`,
             width: this.getAppAbsolutedInnerWidth(this.dimensions.content.width),
           }
         ]
@@ -115,8 +113,8 @@ export default Vue.extend({
       }
 
       return this.$createElement('div', innerContentOptions, this.$scopedSlots.default({
-        top: parseInt(this.calcContentTop),
-        left: parseInt(this.calcContentLeft)
+        top: this.calcContentTop,
+        left: this.calcContentLeft
       }))
     },
     onClick(){

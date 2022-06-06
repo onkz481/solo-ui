@@ -61,21 +61,25 @@ export default {
         left = dAct.left
       }
 
-      return `${innerWidth < (left + dCon.width) ? innerWidth - dCon.width : left}px`
+      return innerWidth < (left + dCon.width) ? innerWidth - dCon.width : left
     },
     calcContentTop(){
       const dAct = this.dimensions.activator
       const dCon = this.dimensions.content
       
+      let top = 0
+
       if( this.offsetY ){
         if( this.top ){
-          return this.offsetX ? `${dAct.bottom - dCon.height}px` : `${dAct.top - dCon.height}px`
+          top = this.offsetX ? dAct.bottom - dCon.height : dAct.top - dCon.height
         } else {
-          return this.offsetX ? `${dAct.top}px` : `${dAct.bottom}px`
+          top = this.offsetX ? dAct.top : dAct.bottom
         }
       } else {
-        return `${dAct.top}px`;
+        top = dAct.top
       }
+
+      return top
     },
   },
   destroyed(){

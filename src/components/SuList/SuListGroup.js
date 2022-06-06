@@ -63,7 +63,8 @@ export default Vue.extend({
     }
   },
   data: () => ({
-    isActive: false
+    isActive: false,
+    menuNode: null
   }),
   computed: {
     isNarrow(){
@@ -85,7 +86,10 @@ export default Vue.extend({
     isActive(val){
       if( val ) this.list && this.list.listClick(this._uid)
     },
-    $route: 'routeChange'
+    'menuNode.componentInstance.isActive'(val){
+      this.isActive = val
+    },
+    $route: 'routeChange',
   },
   created(){
     this[listProvideName] && this[listProvideName].register(this)
@@ -136,7 +140,7 @@ export default Vue.extend({
     genMenu(){
       const icon = this.prependIcon && this.$createElement(SuListItemIcon, {}, [this.genIcon(this.prependIcon)])
 
-      return this.$createElement(SuMenu, {
+      const node = this.$createElement(SuMenu, {
         props: {
           offsetX: true,
           right: true
@@ -148,13 +152,15 @@ export default Vue.extend({
                 'overflow-y-auto'
               ],
               style: {
-                maxHeight: `calc(100vh - ${80 + top}px)`
+                maxHeight: `calc(100vh - ${top + this.$soloui.layout.gutter}px)`
               }
             }, this.$slots.default)
           },
           activator: ({ on }) => {
             return this.$createElement(SuListItem, {
+              staticClass: 'su-list-group__header',
               props: {
+                toggleValue: this.isActive,
                 link: true
               },
               on: on
@@ -162,6 +168,10 @@ export default Vue.extend({
           }
         }
       })
+
+      this.menuNode = node
+
+      return node
     },
     genTransition(item){
       return this.$createElement(SuExpandTransition, {}, [item])
