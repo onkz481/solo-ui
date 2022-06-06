@@ -113,8 +113,7 @@ export default Vue.extend({
       }
 
       return this.$createElement('div', innerContentOptions, this.$scopedSlots.default({
-        top: this.calcContentTop,
-        left: this.calcContentLeft
+        dimensions: this.dimensions
       }))
     },
     onClick(){

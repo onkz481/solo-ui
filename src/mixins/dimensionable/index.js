@@ -47,14 +47,10 @@ export default {
   },
   methods: {
     rectangle(el){
-      const rect = el.getBoundingClientRect()
+      const { x, y, top, bottom, left, right, width, height } = el.getBoundingClientRect()
+
       return {
-        top: rect.top,
-        bottom: rect.bottom,
-        left: rect.left,
-        right: rect.right,
-        width: rect.width,
-        height: rect.height
+        x, y, top, bottom, left, right, width, height
       }
     },
     getAppAbsolutedInnerWidth(width){

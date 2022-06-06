@@ -146,13 +146,15 @@ export default Vue.extend({
           right: true
         },
         scopedSlots: {
-          default: ({ top }) => {
+          default: ({ dimensions }) => {
+            const { y } = dimensions.activator
+
             return this.$createElement('su-card', {
               class: [
                 'overflow-y-auto'
               ],
               style: {
-                maxHeight: `calc(100vh - ${top + this.$soloui.layout.gutter}px)`
+                maxHeight: `calc(100vh - ${y + this.$soloui.layout.gutter}px)`
               }
             }, this.$slots.default)
           },
