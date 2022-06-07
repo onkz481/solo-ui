@@ -8,5 +8,12 @@
   .su-main__layout {
     display: flex;
     justify-content: space-between;
+
+    &-right {
+      &-inner {
+        position: fixed;
+        padding-bottom: 16px;
+      }
+    }
   }
 }

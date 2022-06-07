@@ -3,13 +3,20 @@ import Vue from 'vue'
 // styles
 import './SuMain.scss'
 
+// directives
+import Scroll from '../../directives/Scroll'
+
 export default Vue.extend({
   name: 'SuMain',
   inject: ['application'],
-  props: {
-    fixedRight: {
-      type: Boolean,
-      default: false
+  directives: {
+    Scroll
+  },
+  data(){
+    const layoutRightTop = this.$soloui.layout.header.height
+
+    return {
+      layoutRightTop
     }
   },
   computed: {
@@ -47,10 +54,10 @@ export default Vue.extend({
       return this.hasNav ?
         `${layout.main.center}px` :
         `${layout.app.width - layout.main.right - layout.gutter}px`
-    },
-    calcMainLayoutRight(){
-      return `${this.$soloui.layout.main.right}px`
     }
+  },
+  mounted(){
+    this.onScroll()
   },
   methods: {
     genLayout(){
@@ -78,7 +85,7 @@ export default Vue.extend({
       return this.$createElement('div', {
         staticClass: 'su-main__layout-right',
         style: {
-          width: this.calcMainLayoutRight
+          width: `${this.$soloui.layout.main.right}px`
         }
       }, [
         this.genLayoutRightInner()
@@ -88,11 +95,34 @@ export default Vue.extend({
       return this.$createElement('div', {
         staticClass: 'su-main__layout-right-inner',
         style: {
-          width: this.calcMainLayoutRight,
-          position: this.fixedRight ? 'fixed' : undefined
-        }
+          top: `${this.layoutRightTop}px`,
+          width: `${this.$soloui.layout.main.right}px`,
+        },
+        directives: [
+          {
+            name: 'scroll',
+            value: this.onScroll,
+          }
+        ]
       }, this.$slots.right)
     },
+    onScroll(e, el){
+      if( !el ) return
+
+      let top = this.$soloui.layout.header.height
+
+      if( el.clientHeight < document.documentElement.clientHeight - top ){
+        this.layoutRightTop = top
+
+        return
+      }
+
+      top = (top + el.clientHeight - window.scrollY) > document.documentElement.clientHeight ? 
+        top - window.scrollY : 
+        document.documentElement.clientHeight - el.clientHeight
+
+      this.layoutRightTop = top
+    }
   },
   render(h){
     return h('div', {
