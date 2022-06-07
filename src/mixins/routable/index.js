@@ -66,7 +66,8 @@ export default Vue.extend({
         class: this.classes,
         style: this.styles,
         [this.isRouterLink ? 'nativeOn' : 'on']: {
-          ...this.$listeners
+          ...this.$listeners,
+          ...(this.click ? { click: this.click } : undefined)
         }
       }
 

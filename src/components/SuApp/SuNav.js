@@ -84,12 +84,9 @@ export default Vue.extend({
     this.application.register('nav', this)
   },
   mounted(){
-    this.initialize()
+    this.drawer = this.value
   },
   methods: {
-    initialize(){
-      this.drawer = this.value
-    },
     genWrapper(){
       return this.$createElement('div', {
         class: this.rootClasses,

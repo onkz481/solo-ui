@@ -1,6 +1,9 @@
 // styles
 import './SuApp.scss'
 
+// directives
+import Touch from '../../directives/Touch'
+
 // components
 import { SuImg } from '../SuImg'
 
@@ -14,6 +17,9 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'SuApp',
+  directives: {
+    Touch
+  },
   mixins: [themeable, SuImg],
   provide(){
     return {
@@ -73,7 +79,12 @@ export default Vue.extend({
     },
     register(target, node){
       this[target] = node
-    }
+    },
+    swipeRight(e){
+      if( !this.hasNav || e.touchstartX > this.$soloui.layout.gutter ) return
+
+      this.nav.drawer = true
+    },
   },
   render(h){
     return h('div', {
@@ -81,7 +92,15 @@ export default Vue.extend({
       class: this.classes,
       attrs: {
         id: this.id,
-      }
+      },
+      directives: [
+        {
+          name: 'touch',
+          value: {
+            right: this.swipeRight
+          }
+        }
+      ]
     }, [
       this.genImg(),
       this.genWrapper(),
