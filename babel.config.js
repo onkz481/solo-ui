@@ -1,4 +1,4 @@
-const devPresets = ['@vue/babel-preset-app'];
+const devPresets = ['@vue/babel-preset-app']
 const buildPresets = [
   [
     '@babel/preset-env',
@@ -8,13 +8,13 @@ const buildPresets = [
       // include: [
       //   /(optional-chaining|nullish-coalescing)/
       // ],
+      include: [
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-transform-arrow-functions'
+      ]
     },
   ],
-];
+]
 module.exports = {
-  presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets),
-	plugins: [
-    "transform-class-properties",
-    "@babel/plugin-transform-arrow-functions"
-  ]
-};
+  presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets)
+}
