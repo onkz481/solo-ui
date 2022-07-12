@@ -1,0 +1,14 @@
+@import '../../styles/styles.scss';
+
+.su-menu {
+  display: none;
+}
+
+.su-menu-content {
+  position: absolute;
+  z-index: 24;
+
+  .su-menu-content__inner {
+    @include set-md-elevation(8);
+  }
+}

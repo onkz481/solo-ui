@@ -1,0 +1,96 @@
+.m-auto {
+  margin: auto !important;
+}
+.mt-auto {
+  margin-top: auto !important;
+}
+.mb-auto {
+  margin-bottom: auto !important;
+}
+.ml-auto {
+  margin-left: auto !important;
+}
+.mr-auto {
+  margin-right: auto !important;
+}
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+@for $i from 0 through 16 {
+  .m-#{$i} {
+    margin: ($spacer * (0.25 * $i)) !important;
+  }
+  .mt-#{$i} {
+    margin-top: ($spacer * (0.25 * $i)) !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: ($spacer * (0.25 * $i)) !important;
+  }
+  .ml-#{$i} {
+    margin-left: ($spacer * (0.25 * $i)) !important;
+  }
+  .mr-#{$i} {
+    margin-right: ($spacer * (0.25 * $i)) !important;
+  }
+  .mx-#{$i} {
+    margin-left: ($spacer * (0.25 * $i)) !important;
+    margin-right: ($spacer * (0.25 * $i)) !important;
+  }
+  .my-#{$i} {
+    margin-top: ($spacer * (0.25 * $i)) !important;
+    margin-bottom: ($spacer * (0.25 * $i)) !important;
+  }
+  .m-n#{$i} {
+    margin: -($spacer * (0.25 * $i)) !important;
+  }
+  .mt-n#{$i} {
+    margin-top: -($spacer * (0.25 * $i)) !important;
+  }
+  .mb-n#{$i} {
+    margin-bottom: -($spacer * (0.25 * $i)) !important;
+  }
+  .ml-n#{$i} {
+    margin-left: -($spacer * (0.25 * $i)) !important;
+  }
+  .mr-n#{$i} {
+    margin-right: -($spacer * (0.25 * $i)) !important;
+  }
+  .mx-n#{$i} {
+    margin-left: -($spacer * (0.25 * $i)) !important;
+    margin-right: -($spacer * (0.25 * $i)) !important;
+  }
+  .my-n#{$i} {
+    margin-top: -($spacer * (0.25 * $i)) !important;
+    margin-bottom: -($spacer * (0.25 * $i)) !important;
+  }
+
+  .p-#{$i} {
+    padding: ($spacer * (0.25 * $i)) !important;
+  }
+  .pt-#{$i} {
+    padding-top: ($spacer * (0.25 * $i)) !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: ($spacer * (0.25 * $i)) !important;
+  }
+  .pl-#{$i} {
+    padding-left: ($spacer * (0.25 * $i)) !important;
+  }
+  .pr-#{$i} {
+    padding-right: ($spacer * (0.25 * $i)) !important;
+  }
+  .px-#{$i} {
+    padding-left: ($spacer * (0.25 * $i)) !important;
+    padding-right: ($spacer * (0.25 * $i)) !important;
+  }
+  .py-#{$i} {
+    padding-top: ($spacer * (0.25 * $i)) !important;
+    padding-bottom: ($spacer * (0.25 * $i)) !important;
+  }
+}

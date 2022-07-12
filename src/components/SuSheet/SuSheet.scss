@@ -1,0 +1,15 @@
+@import '../../styles/styles.scss';
+
+.su-sheet {
+  max-width: 100%;
+}
+
+@include set-theme(su-sheet) using ($material) {
+  @include set-scrollbar(map-deep-get($material, 'sheets', 'border-color'));
+
+  background-color: map-deep-get($material, 'sheets', 'background-color');
+
+  &--outlined {
+    border: thin solid map-deep-get($material, 'sheets', 'border-color');
+  }
+}

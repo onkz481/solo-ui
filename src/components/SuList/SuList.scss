@@ -1,0 +1,13 @@
+@import '../../styles/styles.scss';
+
+.su-list {
+  width: 100%;
+  padding: 8px 0;
+
+  &.su-list--is-shrink {
+    padding: 8px;
+    .su-list-item {
+      border-radius: 4px;
+    }
+  }
+}

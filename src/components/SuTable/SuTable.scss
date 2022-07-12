@@ -1,0 +1,80 @@
+@import '../../styles/styles.scss';
+
+.su-table {
+  table {
+    width: 100%;
+    font-size: .875em;
+    border-collapse: collapse;
+    border-spacing: 0;
+  
+    tr {
+      td, th {
+        padding: 12px;
+      }
+    }
+  
+    thead {
+      @include set-headings-font(caption);
+  
+      tr {
+        border-bottom: 1px solid;
+
+        th {
+          text-align: left;
+        }
+      }
+    }
+  
+    tbody {
+      tr {
+        &:not(:last-child) {
+          border-bottom: 1px solid;
+        }
+
+        td {
+          &:not(:last-child) {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  .su-table__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 48px;
+    padding: 0 8px;
+    border-top: 1px solid;
+
+    @include set-headings-font(caption);
+
+    .su-table__footer-pagination {
+      margin: 0 4px;
+    }
+  }
+}
+
+
+@include set-theme(su-table) using ($material) {
+  table {
+    thead {
+      color: map-deep-get($material, 'tables', 'header-color');
+
+      tr {
+        border-color: map-deep-get($material, 'tables', 'border-color');
+      }
+    }
+
+    tbody {
+      tr {
+        border-color: map-deep-get($material, 'tables', 'border-color');
+      }
+    }
+  }
+
+  .su-table__footer {
+    border-color: map-deep-get($material, 'tables', 'border-color');
+  }
+}

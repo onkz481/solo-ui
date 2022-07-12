@@ -1,0 +1,43 @@
+@import '../../styles/styles.scss';
+
+.su-textarea {
+  .su-label {
+    top: 21px;
+  }
+
+  textarea {
+    @include set-headings-font('body-1');
+
+    align-self: stretch;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-height: 32px;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    resize: none;
+  }
+
+  &.su-textarea--auto-grow {
+    textarea {
+      overflow: hidden;
+    }
+  }
+
+  &.su-input {
+    .su-input__slot-outer {
+      align-items: flex-start;
+
+      .su-input__prepend-outer, .su-input__append-outer,
+      .su-input__prepend-inner, .su-input__append-inner {
+        padding-top: 16px;
+      }
+    }
+  }
+}
+
+@include set-theme(su-textarea) using ($material) {
+  textarea {
+    color: map-deep-get($material, 'text-fields', 'font-color');
+  }
+}

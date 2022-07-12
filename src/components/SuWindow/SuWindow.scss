@@ -1,0 +1,39 @@
+.su-window {
+  position: relative;
+  
+  &__content {
+    position: relative;
+    height: inherit;
+
+    .su-window-item {
+      width: 100%;
+    }
+  }
+
+  &__prev, &__next {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+  }
+  &__prev {
+    left: 8px;
+  }
+  &__next {
+    right: 8px;
+  }
+
+  &.su-window--is-vertical {
+    .su-window__attachs {
+      flex-direction: column;
+
+      .su-window__prev {
+        margin-right: 0;
+        margin-bottom: auto;
+      }
+      .su-window__next {
+        margin-left: 0;
+        margin-top: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+@import '../../styles/styles.scss';
+
+.su-progress-line {
+  width: 100%;
+
+  .su-progress-line {
+    &__determinate, &__indeterminate {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      transition: inherit;
+    }
+
+    &__indeterminate {
+      width: 100%;
+
+      .long {
+        width: auto;
+        animation-name: SuProgressLineIndeterminateLong;
+        animation-duration: 2.2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+
+        &.reverse {
+          animation-name: SuProgressLineIndeterminateLongReverse;
+        }
+      }
+
+      .short {
+        width: auto;
+        animation-name: SuProgressLineIndeterminateShort;
+        animation-duration: 2.2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+
+        &.reverse {
+          animation-name: SuProgressLineIndeterminateShortReverse;
+        }
+      }
+    }
+  }
+
+  &.su-progress-line--absolute {
+    position: absolute;
+    left: 0;
+  }
+
+  .su-progress__default-slot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@keyframes SuProgressLineIndeterminateLong {
+  0% {
+    width: 100%;
+    left: -100%;
+  }
+  50% {
+    width: 10%;
+    left: 100%;
+  }
+  100% {
+    width: 10%;
+    left: 100%;
+  }
+}
+
+@keyframes SuProgressLineIndeterminateLongReverse {
+  0% {
+    width: 100%;
+    left: 100%;
+  }
+  50% {
+    width: 10%;
+    left: -10%;
+  }
+  100% {
+    width: 10%;
+    left: -10%;
+  }
+}
+
+@keyframes SuProgressLineIndeterminateShort {
+  0% {
+    width: 100%;
+    left: -100%;
+  }
+  50% {
+    width: 100%;
+    left: -100%;
+  }
+  100% {
+    width: 100%;
+    left: 100%;
+  }
+}
+
+@keyframes SuProgressLineIndeterminateShortReverse {
+  0% {
+    width: 100%;
+    left: 100%;
+  }
+  50% {
+    width: 100%;
+    left: 100%;
+  }
+  100% {
+    width: 100%;
+    left: -100%;
+  }
+}

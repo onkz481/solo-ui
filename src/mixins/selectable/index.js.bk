@@ -1,0 +1,55 @@
+export default {
+  model: {
+    prop: 'modelValue',
+    event: 'update:modelValue'
+  },
+  props: {
+    modelValue: {
+      type: [Boolean, Array],
+      default: undefined
+    },
+    label: {
+      type: String,
+      default: undefined
+    },
+    value: {
+      type: [Number, String],
+      default: undefined
+    },
+  },
+  data: () => ({
+    isSelected: false
+  }),
+  watch: {
+    isSelected(){
+      if( typeof this.modelValue === 'boolean' || !this.value ){
+        this.$emit('update:modelValue', this.isSelected);
+      }
+      if( Array.isArray(this.modelValue) ){
+        let array = this.modelValue;
+
+        if( this.isSelected ){
+          array.push(this.value);
+
+          this.$emit('update:modelValue', Array.from(new Set(array)));
+        } else {
+          this.$emit('update:modelValue', array.filter(v => !(v === this.value)));
+        }
+      }
+    }
+  },
+  methods: {
+    initialize(){
+      if(typeof this.modelValue === 'boolean') this.isSelected = this.modelValue
+
+      if(Array.isArray(this.modelValue) && this.value !== undefined && this.modelValue.includes(this.value)) this.isSelected = true
+    },
+    handleChange(e){
+      if( this._events.change && typeof this._events.change[0] === 'function' ){
+        this.$emit('change', this);
+      } else {
+        this.isSelected = e.target.checked;
+      }
+    }
+  }
+}

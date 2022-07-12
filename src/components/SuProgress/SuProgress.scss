@@ -1,0 +1,17 @@
+@import '../../styles/styles.scss';
+
+.su-progress {
+  position: relative;
+  overflow: hidden;
+  transition: $priamry-transition;
+
+  .su-progress__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  //.su-progress__default-slot {}
+}

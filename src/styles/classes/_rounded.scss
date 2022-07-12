@@ -1,0 +1,5 @@
+@each $key, $val in $rounded {
+  .rounded-#{$key} {
+    border-radius: $val !important;
+  }
+}

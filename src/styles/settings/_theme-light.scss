@@ -1,0 +1,60 @@
+$theme-light: (
+  'colors': (
+    'primary': map-get($theme-colors, 'light'),
+  ),
+  'font-colors': (
+    //'primary': map-get($md-shades, 'black'),
+    'primary': #000000,
+  ),
+  'buttons': (
+    'background-color': darken(map-get($theme-colors, 'light'), 20%),
+    'border-color': darken(map-get($theme-colors, 'light'), 20%),
+  ),
+  'cards': (
+    'background-color': darken(map-get($theme-colors, 'light'), 10%),
+    'border-color': hsla(0,0%,0%,.12),
+  ),
+  'codes': (
+    'background-color': darken(map-get($theme-colors, 'light'), 10%)
+  ),
+  'dividers': (
+    'color': darken(map-get($theme-colors, 'light'), 30%),
+  ),
+  'elements': (
+    'code': darken(map-get($theme-colors, 'light'), 30%)
+  ),
+  'icons': (
+    'color': #000000,
+    'disabled': lighten(#000000, 50%),
+  ),
+  'inputs': (
+    'color': lighten(#000000, 30%)
+  ),
+  'labels': (
+    'color': lighten(#000000, 30%)
+  ),
+  'list-items': (
+    'title': #000000,
+    'subtitle': lighten(#000000, 40%),
+    'overline': lighten(#000000, 40%),
+  ),
+  'scrollbars': (
+    'color': darken(map-get($theme-colors, 'light'), 10%)
+  ),
+  'sheets': (
+    'background-color': darken(map-get($theme-colors, 'light'), 10%),
+    'border-color': hsla(0,0%,0%,.12),
+  ),
+  'tables': (
+    'border-color': lighten(#000000, 70%),
+    'header-color': lighten(#000000, 40%),
+  ),
+  'tabs': (
+    'color': lighten(#000000, 10%)
+  ),
+  'text-fields': (
+    'color': hsla(0,0%,0%,.12),
+    'font-color': #000000,
+    'border-color': #000000
+  )
+);

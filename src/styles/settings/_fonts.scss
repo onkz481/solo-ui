@@ -1,0 +1,120 @@
+
+$body-font-family: 'Noto Sans JP', sans-serif !default;
+
+$font-weights: (
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  black: 900
+);
+
+$heading-font-family: $body-font-family;
+
+$headings: (
+  h1: (
+    'font-size': 5.8125rem,
+    'font-weight': map-get($font-weights, 'light'),
+    'line-height': 8.0625rem,
+    'letter-spacing': -1.5px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  h2: (
+    'font-size': 3.625rem,
+    'font-weight': map-get($font-weights, 'light'),
+    'line-height': 5rem,
+    'letter-spacing': -0.5px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  h3: (
+    'font-size': 2.9375rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 4rem,
+    'letter-spacing': 0px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  h4: (
+    'font-size': 2.0625rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 2.8125rem,
+    'letter-spacing': 0.25px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  h5: (
+    'font-size': 1.4375rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 1.9375rem,
+    'letter-spacing': 0px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  h6: (
+    'font-size': 1.1875rem,
+    'font-weight': map-get($font-weights, 'medium'),
+    'line-height': 1.625rem,
+    'letter-spacing': 0px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  subtitle-1: (
+    'font-size': .9375rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 1.2rem,
+    'letter-spacing': 0.15px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  subtitle-2: (
+    'font-size': .8125rem,
+    'font-weight': map-get($font-weights, 'medium'),
+    'line-height': 1.0625rem,
+    'letter-spacing': 0.1px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  body-1: (
+    'font-size': 1rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 1.3125rem,
+    'letter-spacing': 0.5px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  body-2: (
+    'font-size': .875rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 1.1875rem,
+    'letter-spacing': 0.25px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  button: (
+    'font-size': .875rem,
+    'font-weight': map-get($font-weights, 'medium'),
+    'line-height': 1.125rem,
+    'letter-spacing': 1.25px,
+    'font-family': $heading-font-family,
+    'text-transform': uppercase
+  ),
+  caption: (
+    'font-size': .75rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': 1rem,
+    'letter-spacing': 0.4px,
+    'font-family': $heading-font-family,
+    'text-transform': none
+  ),
+  overline: (
+    'font-size': .625rem,
+    'font-weight': map-get($font-weights, 'regular'),
+    'line-height': .875rem,
+    'letter-spacing': 1.5px,
+    'font-family': $heading-font-family,
+    'text-transform': uppercase
+  )
+);

@@ -1,0 +1,30 @@
+.su-list-group {
+  .su-list-group__header {
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover:before {
+      opacity: .08;
+    }
+  }
+
+  .su-list-group__items {
+    .su-list-item {
+      padding-left: 72px;
+    }
+  }
+
+  &.su-list-group--active {
+    .su-list-group__append-icon {
+      .su-icon {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .su-list-group__append-icon {
+    &.su-list-item__icon {
+      margin-right: 0;
+    }
+  }
+}

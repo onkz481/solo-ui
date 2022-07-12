@@ -1,0 +1,36 @@
+@mixin set-headings-font($heading){
+  @each $key, $val in map-get($headings, $heading) {
+    #{$key}: $val;
+  }
+}
+
+@mixin set-scrollbar($color){
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    border-radius: 9px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: inherit;
+  }
+}
+
+@mixin set-md-elevation($elevation){
+  box-shadow: map-get($md-elevation-shadows, $elevation);
+}
+
+@mixin set-media-screen($breakpoint) {
+  @media screen and (min-width: #{map-get($breakpoints, $breakpoint)}px) {
+    @content;
+  }
+}
+
+@mixin set-text-omit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

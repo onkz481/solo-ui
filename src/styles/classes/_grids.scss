@@ -1,0 +1,65 @@
+.container, .container-fluid {
+  width: 100%;
+  padding: 12px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+
+  &.no-gutters {
+    margin: 0;
+
+    >[class*="col"] {
+      padding: 0;
+    }
+  }
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding: 12px;
+}
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 calc((100% / 12) * $i);
+    max-width: calc((100% / 12) * $i);
+    padding: 12px;
+  }
+}
+
+@include set-media-screen(sm) {
+  .container {
+    max-width: 944px;
+  }
+}
+@include set-media-screen(md) {
+  .container {
+    max-width: 1200px;
+  }
+}
+@include set-media-screen(lg) {
+  .container {
+    max-width: 1840px;
+  }
+}
+
+.shrink {
+  flex-grow: 0 !important;
+  flex-shrink: 1 !important;
+}
+
+.su-spacer {
+  flex-grow: 1 !important;
+}

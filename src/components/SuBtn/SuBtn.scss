@@ -1,0 +1,173 @@
+@import '../../styles/styles.scss';
+
+.su-btn {
+  @include set-headings-font('button');
+  @include set-md-elevation(2);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: $btn-border-radius;
+  text-decoration: none;
+
+  >span {
+    display: inline-flex;
+  }
+  
+  &:before {
+    background-color: currentColor;
+    border-radius: inherit;
+    bottom: 0;
+    color: inherit;
+    content: "";
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .2s cubic-bezier(.4,0,.6,1);
+  }
+  &:hover:before {
+    opacity: .08;
+  }
+
+  &.su-btn--is-outlined {
+    @include set-md-elevation(0);
+
+    background-color: transparent !important;
+  }
+  &.su-btn--is-text {
+    @include set-md-elevation(0);
+
+    background-color: transparent !important;
+
+    &:not(.su-btn--is-round) {
+      padding: 0 8px !important;
+    }
+  }
+  &.su-btn--is-loading {
+    .su-btn__content {
+      opacity: 0;
+    }
+  }
+  &.su-btn--is-disabled {
+    cursor: default !important;
+    background-color: transparent !important;
+    color: map-get($md-grey, 'darken-1') !important;
+  }
+  &.su-btn--is-round {
+    border-radius: 50% !important;
+  }
+  &.su-btn--is-icon {
+    &.su-size--small {
+      min-width: #{map-get($btn-sizes, 'small')}px;
+      min-height: #{map-get($btn-sizes, 'small')}px;
+    }
+    &.su-size--default {
+      min-width: #{map-get($btn-sizes, 'default')}px;
+      min-height: #{map-get($btn-sizes, 'default')}px;
+    }
+    &.su-size--large {
+      min-width: #{map-get($btn-sizes, 'large')}px;
+      min-height: #{map-get($btn-sizes, 'large')}px;
+    }
+  }
+  
+  /* size */
+  &.su-size--small {
+    font-size: map-deep-get($headings, 'button', 'font-size') - 0.125rem;
+  }
+  &.su-size--default {
+    font-size: map-deep-get($headings, 'button', 'font-size');
+  }
+  &.su-size--large {
+    font-size: map-deep-get($headings, 'button', 'font-size');
+  }
+
+  &:not(.su-btn--is-round) {
+    &.su-size--small {
+      padding: 0 12px;
+      min-width: 50px;
+      height: #{map-get($btn-sizes, 'small')}px;
+    }
+    &.su-size--default {
+      padding: 0 16px;
+      min-width: 64px;
+      height: #{map-get($btn-sizes, 'default')}px;
+    }
+    &.su-size--large {
+      padding: 0 20px;
+      min-width: 78px;
+      height: #{map-get($btn-sizes, 'large')}px;
+    }
+  }
+
+  .su-btn__content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .su-btn__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* icon */
+  &:not(.su-btn--is-round) {
+    .su-icon {
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+
+      &:first-child {
+        margin-left: -4px;
+        margin-right: 8px;
+      }
+      &:last-child {
+        margin-left: 8px;
+        margin-right: -4px;
+      }
+    }
+  }
+}
+
+.su-btn--loading-animation {
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  box-sizing:border-box;
+  position:absolute;
+  animation:circle 1s linear infinite;
+  -webkit-animation:circle 1s linear infinite;
+}
+
+@keyframes circle{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+@-webkit-keyframes circle{
+  0%{-webkit-transform:rotate(0deg)}
+  100%{-webkit-transform:rotate(360deg)}
+}
+
+@include set-theme(su-btn) using ($material) {
+  background-color: map-deep-get($material, 'buttons', 'background-color');
+  border-color: map-deep-get($material, 'buttons', 'border-color');
+  color: map-deep-get($material, 'font-colors', 'primary');
+
+  &--is-outlined {
+    border: thin solid map-deep-get($material, 'buttons', 'border-color');
+  }
+
+  .su-btn--loading-animation {
+    border: 3px solid currentColor;
+    border-top-color: transparent;
+  }
+}

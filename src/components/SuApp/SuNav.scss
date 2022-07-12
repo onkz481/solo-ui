@@ -1,0 +1,40 @@
+@import '../../styles/styles.scss';
+
+//-- Navigation
+.su-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  z-index: 16;
+
+  .su-nav-inner-w {
+    //-- Fixed Navigation
+    .su-nav__fixed {
+      position: fixed;
+      padding-bottom: 16px;
+
+      //-- Scrll Navigation
+      .su-nav__scroll {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+
+  &.su-nav-drawer {
+    position: fixed;
+    display: block;
+    justify-content: normal;
+    flex-grow: 0;
+    z-index: 24;
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+@include set-theme(su-nav) using ($material) {
+  .su-nav__scroll {
+    @include set-scrollbar(map-deep-get($material, 'scrollbars', 'color'));
+  }
+}

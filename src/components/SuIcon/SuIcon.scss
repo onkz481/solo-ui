@@ -1,0 +1,45 @@
+@import '../../styles/styles.scss';
+
+.su-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  letter-spacing: normal;
+  user-select: none;
+  transition: .3s cubic-bezier(.25,.8,.5,1),visibility 0s;
+
+  @each $key, $val in $icon-sizes {
+    &.su-size--#{'' + $key} {
+      width: #{$val}px;
+      font-size: #{$val}px;
+      height: #{$val}px;
+
+      .su-icon__img {
+        width: #{$val}px;
+        height: #{$val}px;
+      }
+    }
+  }
+
+  i {
+    font-size: inherit;
+  }
+
+  .su-icon__img {
+    display: flex;
+  }
+
+  .su-icon__svg {
+    fill: currentColor;
+  }
+}
+
+@include set-theme(su-icon) using ($material) {
+  color: map-deep-get($material, 'icons', 'color');
+
+  &--is-disabled {
+    color: map-deep-get($material, 'icons', 'disabled')!important;
+  }
+}

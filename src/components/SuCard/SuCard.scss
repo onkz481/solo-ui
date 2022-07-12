@@ -1,0 +1,29 @@
+@import '../../styles/styles.scss';
+
+.su-sheet {
+  &.su-card {
+    @include set-md-elevation(8);
+    
+    position: relative;
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+  
+    color: inherit;
+    text-decoration: none;
+  
+    &.su-card--is-link {
+      cursor: pointer;
+    }
+  }
+}
+
+@include set-theme(su-card) using ($material) {
+  @include set-scrollbar(map-deep-get($material, 'cards', 'border-color'));
+
+  background-color: map-deep-get($material, 'cards', 'background-color');
+
+  &--outlined {
+    border: thin solid map-deep-get($material, 'cards', 'border-color');
+  }
+}

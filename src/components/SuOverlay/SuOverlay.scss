@@ -1,0 +1,34 @@
+.su-overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 23;
+  pointer-events: none;
+
+  &.su-overlay--is-absolute {
+    position: absolute;
+  }
+  &.su-overlay--is-active {
+    pointer-events: auto;
+
+    .su-overlay__background {
+      opacity: .4;
+    }
+  }
+
+  .su-overlay__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    transition: all .3s ease;
+  }
+}

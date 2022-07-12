@@ -1,0 +1,14 @@
+.su-app {
+  code {
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    font-family: inherit;
+    font-size: 0.85em;
+  }
+}
+
+@include set-theme(su-app) using ($material) {
+  code {
+    background-color: map-deep-get($material, 'elements', 'code');
+  }
+}

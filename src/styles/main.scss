@@ -1,0 +1,19 @@
+@import './imports/index';
+@import './styles.scss';
+
+@import './classes/index';
+@import './elements/index';
+
+html {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  font-size: 16px;
+
+  body {
+    @include set-headings-font('body-1');
+  }
+}

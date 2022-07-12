@@ -1,0 +1,7 @@
+@each $heading, $props in $headings {
+  .text-#{$heading} {
+    @each $key, $val in $props {
+      #{$key}: $val
+    }
+  }
+}

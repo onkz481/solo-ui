@@ -1,0 +1,41 @@
+//-- colors
+@each $color_name, $colors in $md-colors {
+  @each $key, $val in $colors {
+    .#{"" + $color_name} {
+      @if $key == 'base' {
+        background-color: $val !important;
+        border-color: $val !important;
+
+        &--text {
+          color: $val !important;
+          border-color: $val !important;
+        }
+      }
+      @else {
+        &.#{"" + $key} {
+          background-color: $val !important;
+          border-color: $val !important;
+
+          &--text {
+            color: $val !important;
+            border-color: $val !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+//-- theme-colors
+@each $key, $val in $theme-colors {
+  // background
+  .#{"" + $key} {
+    background-color: $val !important;
+    border-color: $val !important;
+  }
+  // text
+  .#{"" + $key}--text {
+    color: $val !important;
+    border-color: $val !important;
+  }
+}
