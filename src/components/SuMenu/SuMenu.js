@@ -74,16 +74,13 @@ export default Vue.extend({
       }
     },
     genContent(){
-      const left = this.isInNav ? this.calcContentLeft + this.$soloui.layout.gutter : this.calcContentLeft
-
       const options = {
         style:{
           top: `${this.calcContentTop}px`,
-          left: `${left}px`,
+          left: `${this.isInNav ? this.calcContentLeft + this.$soloui.layout.gutter : this.calcContentLeft}px`,
+          width: `${this.calcContentWidth}px`
         }
       }
-
-      if( this.dimensions.content.width > 0 ) options.width = `${this.dimensions.content.width}px`
 
       return this.$createElement('div', {
         staticClass: 'su-menu-content',

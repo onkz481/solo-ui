@@ -85,6 +85,11 @@ export default {
 
       return top
     },
+    calcContentWidth(){
+      let { activator, content } = this.dimensions
+
+      return activator.width && activator.width > content.width ? activator.width : content.width
+    }
   },
   destroyed(){
     if( !this.menuContentNode.elm ) return
@@ -92,27 +97,38 @@ export default {
     this.menuContentNode.elm.remove()
   },
   methods: {
+    setContentDimensions(contentEl, dimensions = this.dimensions){
+      let { activator, content } = dimensions
+
+      content = Object.keys(content).length > 0 ? { ...content, ...rectangle(contentEl) } : rectangle(contentEl)
+
+      if( activator.width && activator.width > content.width ) content.width = activator.width
+
+      return content
+    },
     updateDimensions(){
       if( !this.activatorNode.length > 0 ) return
 
-      const activator = this.activatorNode[0]['elm']
-      const content = this.menuContentNode['elm']
+      const activatorEl = this.activatorNode[0]['elm']
+      const contentEl = this.menuContentNode['elm']
 
       const dimensions = this.dimensions
 
-      dimensions.activator = rectangle(activator)
-      dimensions.activator.offsetTop = activator.offsetTop
-      dimensions.activator.offsetLeft = activator.offsetLeft
+      // activator
+      dimensions.activator = rectangle(activatorEl)
+      dimensions.activator.offsetTop = activatorEl.offsetTop
+      dimensions.activator.offsetLeft = activatorEl.offsetLeft
 
-      if(content.offsetParent){
-        const offsetRect = rectangle(content.offsetParent)
+      if(contentEl.offsetParent){
+        const offsetRect = rectangle(contentEl.offsetParent)
         dimensions.activator.top -= offsetRect.top
         dimensions.activator.left -= offsetRect.left
         dimensions.activator.bottom = dimensions.activator.top + dimensions.activator.height
         dimensions.activator.right = dimensions.activator.left + dimensions.activator.width
       }
 
-      dimensions.content = rectangle(content)
+      // content
+      dimensions.content = rectangle(contentEl)
 
       this.dimensions = dimensions
     }
