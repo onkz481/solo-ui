@@ -37,7 +37,7 @@
             :class="contentInnerClasses"
           >
             <slot
-              :props="props"
+              :props="computedProps"
               :value="internalValue"
             />
           </div>
@@ -78,21 +78,63 @@
             style="height: 400px;"
           >
             <template
-              v-for="option, key in props"
+              v-for="prop, key in props"
             >
               <su-text-field
-                v-if="typeof option === 'string' || typeof option === 'number'"
+                v-if="prop.type === String || prop.type === Number"
                 :key="key"
-                v-model="props[key]"
+                v-model="props[key].value"
+                :label="key"
+              />
+
+              <su-text-field
+                v-else-if="Array.isArray(prop.type) && ( prop.type.includes(String) || prop.type.includes(Number) )"
+                :key="key"
+                v-model="props[key].value"
                 :label="key"
               />
 
               <su-checkbox
-                v-else-if="typeof option === 'boolean'"
+                v-else-if="prop.type === Boolean"
                 :key="key"
-                v-model="props[key]"
+                v-model="props[key].value"
                 :label="key"
               />
+
+              <su-menu
+                v-else-if="prop.type === 'theme'"
+                :key="key"
+                offset-y
+              >
+                <template #activator="{ on }">
+                  <su-btn
+                    class="mb-4"
+                    style="width: 100%;"
+                    text
+                    outlined
+                    v-on="on"
+                  >
+                    {{ props[key].value }}
+                  </su-btn>
+                </template>
+
+                <su-card>
+                  <su-list>
+                    <su-list-item
+                      v-for="theme in $soloui.theme.themes"
+                      :key="theme"
+                      link
+                      @click="props[key].value = theme"
+                    >
+                      <su-list-item-content>
+                        <su-list-item-title>
+                          {{ theme }}
+                        </su-list-item-title>
+                      </su-list-item-content>
+                    </su-list-item>
+                  </su-list>
+                </su-card>
+              </su-menu>
             </template>
           </div>
         </div>
@@ -137,6 +179,15 @@ export default {
     isProps(){
       return Object.keys(this.props).length > 0
     },
+    computedProps(){
+      const result = {}
+
+      Object.keys(this.props).forEach(key => {
+        result[key] = this.props[key].value
+      })
+
+      return result
+    },
     contentInnerClasses(){
       return {
         'unit-tester__content-inner': true,
@@ -146,7 +197,7 @@ export default {
   },
   watch: {
     component(component){
-      this.setProps(component.options.props)
+      this.setProps(component)
     },
     overwrites: {
       handler(){
@@ -171,12 +222,37 @@ export default {
       
       this.contentStyles = styles
     },
+    setProp(props, key, overwrite){
+      const result = {}
+
+      result.type = props[key].type
+
+      result.value = typeof props[key].default === 'function' ? props[key].default() : props[key].default
+
+      if( overwrite ) result.value = overwrite
+
+      // is Themeable
+      if( key === 'theme' ){
+        result.type = 'theme'
+        result.value = this.$soloui.theme.current
+      }
+
+      return result
+    },
     setProps(component = undefined){
       const props = this.sortByTypeof( isNull(component) ? this.props : this.getComponentProps(component) )
 
-      this.props = {...props, ...this.overwrites}
+      let result = {}
 
-      this.$emit('update:props', this.props)
+      Object.keys(props).forEach((key) => {
+        result[key] = props[key]
+
+        if( this.overwrites[key] ) result[key].value = this.overwrites[key]
+      })
+
+      this.props = result
+
+      this.$emit('update:props', this.computedProps)
     },
     getComponentProps(component){
       const props = component.options.props
@@ -193,62 +269,38 @@ export default {
           return
         }
 
-        if( this.overwrites[key] ){
-          conversion[key] = this.overwrites[key]
-
-          return
-        }
-
-        if( props[key].default !== undefined ) conversion[key] = props[key].default
-        else conversion[key] = this.getUndefinedProp( props[key] )
+        conversion[key] = this.setProp(props, key, this.overwrites[key])
       })
 
       return conversion
     },
-    getUndefinedProp( prop ){
-      if( Array.isArray(prop.type) ) return this.getArrayTypeProp(prop.type)
-
-      switch(prop.type){
-        case String:
-          return ''
-        case Number:
-          return 0
-        default:
-          return undefined
-      }
-    },
-    getArrayTypeProp(type){
-      if( !Array.isArray(type) ) return undefined
-
-      switch(true){
-        case type.includes(String):
-          return ''
-        case type.includes(Number):
-          return 0
-        default:
-          return undefined
-      }
-    },
     sortByTypeof(conversion){
-      const textfields = {}, checkboxs = {}
+      const prepend = {}, textfields = {}, append = {}
 
+      let type
       Object.keys(conversion).forEach(key => {
+        type = conversion[key].type
+
         switch( true ){
-          case typeof conversion[key] === 'string':
+          case type === 'theme':
+            prepend[key] = conversion[key]
+            break
+          case type === String || ( Array.isArray(type) && type.includes(String) ):
             textfields[key] = conversion[key]
             break
-          case typeof conversion[key] === 'number':
+          case type === Number || ( Array.isArray(type) && type.includes(Number) ):
             textfields[key] = conversion[key]
             break
-          case typeof conversion[key] === 'boolean':
-            checkboxs[key] = conversion[key]
+          case type === Boolean:
+            append[key] = conversion[key]
             break
         }
       })
 
       return {
+        ...prepend,
         ...textfields,
-        ...checkboxs
+        ...append
       }
     }
   }
