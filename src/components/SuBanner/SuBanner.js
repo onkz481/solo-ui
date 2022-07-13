@@ -7,6 +7,7 @@ import { generator as ModelableGenerator } from '../../mixins/modelable'
 // components
 import SuSheet from '../SuSheet'
 import SuExpandTransition from '../SuTransition/SuExpandTransition'
+import { SuIcon } from '../SuIcon'
 
 // helpers
 import { getSlot } from '../../util/helpers'
@@ -17,9 +18,17 @@ export default SuSheet.extend({
     SuExpandTransition
   },
   mixins: [
-    ModelableGenerator('value', 'input', { defaultValue: true })
+    ModelableGenerator('value', 'input', { defaultValue: true }),
   ],
   props: {
+    icon: {
+      type: String,
+      default: undefined
+    },
+    iconColor: {
+      type: String,
+      default: undefined
+    },
     singleLine: {
       type: Boolean,
       default: false
@@ -35,6 +44,9 @@ export default SuSheet.extend({
         },
         ...SuSheet.options.computed.classes.call(this)
       ]
+    },
+    computedIcon(){
+      return this.icon ? this.icon : 'mdi-information-outline'
     },
     styles(){
       return [
@@ -55,7 +67,13 @@ export default SuSheet.extend({
       ])
     },
     genContent(){
-      const slot = getSlot(this, 'icon')
+      const slot = getSlot(this, 'icon') ? getSlot(this, 'icon') : this.$createElement(SuIcon, {
+        props: {
+          color: this.iconColor
+        }
+      }, [
+        this.computedIcon
+      ])
 
       return this.$createElement('div', {
         staticClass: 'su-banner__content'
@@ -83,7 +101,7 @@ export default SuSheet.extend({
     }
   },
   render(h){
-    const render = this.internalValue ? h(this.tag, this[this.text ? 'setTextColor' : 'setBackgroundColor']({
+    const render = this.internalValue ? h(this.computedTag, this[this.text ? 'setTextColor' : 'setBackgroundColor']({
       class: this.classes,
       style: this.styles,
     }), [

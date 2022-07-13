@@ -9,12 +9,6 @@
         v-model="banner"
         v-bind="props"
       >
-        <template #icon>
-          <su-icon>
-            mdi-information-outline
-          </su-icon>
-        </template>
-
         {{ dummyText }}
 
         <template #actions="{ close }">
