@@ -1,10 +1,7 @@
-import { mdColors, themeColors } from './colors'
+import { mdColors, themeColors } from '../variables'
 
 // helpers
-import { toCamelCase } from './helpers'
-
-/* const */
-export const definedColors = getDefinedColors()
+import { toCamelCase } from './main'
 
 export function getCssColor( color ){
   if( !isColor(color) ) return undefined
@@ -20,24 +17,13 @@ export function getCssColor( color ){
   return result
 }
 
-export function getDefinedColors(){
-  const colors = Object.keys(mdColors).concat(Object.keys(themeColors))
-  const textColors = colors.map(color => {
-    return `${color}--text`
-  })
-
-  let subColors = []
-  Object.keys(mdColors).map(key => {
-    return Object.keys(mdColors[key])
-  }).forEach(arr => {
-    subColors = [...subColors, ...arr]
-  })
-
-  return [...colors, ...textColors, ...new Set(subColors)]
+// マテリアルカラー、またはインラインカラー判定
+export function isColor( color ){
+  return isMdColor( color ) || isCssColor( color )
 }
 
-// 定義されたカラーネームかどうか
-export function isColor( color ){
+// マテリアルカラー判定
+export function isMdColor( color ){
   if( typeof color !== 'string' ) return false
 
   const colorSet = new Set(Object.keys(mdColors).concat(Object.keys(themeColors)))

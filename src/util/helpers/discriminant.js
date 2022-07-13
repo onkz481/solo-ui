@@ -1,4 +1,4 @@
-import { regExpForUrl } from './regExp'
+import { regExpForUrl } from '../variables'
 
 // 空値判定
 export function isEmpty(val){

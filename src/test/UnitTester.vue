@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { isNull } from '../util/boolHelpers'
+import { isNull } from '../util/helpers'
 
 export default {
   name: 'UnitTester',

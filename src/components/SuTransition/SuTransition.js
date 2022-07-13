@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 // helpers
 import { getSlot, isEmpty } from '../../util/helpers'
-import { transitionNames } from '../../util/transition'
+import { transitionNames } from '../../util/variables'
 
 export default Vue.extend({
   name: 'SuTransition',

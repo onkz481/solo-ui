@@ -1,7 +1,8 @@
-import { definedColors } from '../../util/colorHelpers'
+// variables
+import { definedColors } from '../../util/variables'
 
-//helpers
-import { getCssColor, isColor, isCssColor } from "../../util/colorHelpers"
+// helpers
+import { getCssColor, isColor, isCssColor } from "../../util/helpers"
 
 export default {
   props: {

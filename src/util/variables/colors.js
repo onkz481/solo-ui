@@ -1,5 +1,3 @@
-
-
 // red
 const red = {
   base: '#F44336',
@@ -359,3 +357,26 @@ export const themeColors = Object.freeze({
   light: '#dfdfdf',
   dark: '#121212'
 })
+
+/* request helpers */
+
+export const definedColors = getDefinedColors()
+
+
+/* protected functions */
+
+function getDefinedColors(){
+  const colors = Object.keys(mdColors).concat(Object.keys(themeColors))
+  const textColors = colors.map(color => {
+    return `${color}--text`
+  })
+
+  let subColors = []
+  Object.keys(mdColors).map(key => {
+    return Object.keys(mdColors[key])
+  }).forEach(arr => {
+    subColors = [...subColors, ...arr]
+  })
+
+  return [...colors, ...textColors, ...new Set(subColors)]
+}

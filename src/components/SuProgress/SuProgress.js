@@ -8,8 +8,7 @@ import colorable from '../../mixins/colorable'
 import { generator as ModelableGenerator } from '../../mixins/modelable'
 
 // helpers
-import { getSlot, isNumber } from '../../util/helpers'
-import { isColor, isCssColor } from '../../util/colorHelpers'
+import { getSlot, isColor, isNumber } from '../../util/helpers'
 
 export default Vue.extend({
   name: 'SuProgress',
@@ -47,7 +46,7 @@ export default Vue.extend({
       ]
     },
     computedBackgroundColor(){
-      return isColor(this.backgroundColor) || isCssColor(this.backgroundColor) ? this.backgroundColor : this.computedColor
+      return isColor(this.backgroundColor) ? this.backgroundColor : this.computedColor
     },
     computedBackgroundOpacity(){
       return isNumber( this.backgroundOpacity ) ? this.backgroundOpacity : 0.3

@@ -7,7 +7,7 @@ import './SuImg.scss'
 import dimensionable from '../../mixins/dimensionable'
 
 // helpers
-import { isNumber } from '../../util/boolHelpers'
+import { isNumber } from '../../util/helpers'
 
 export default Vue.extend({
   name: 'SuImg',

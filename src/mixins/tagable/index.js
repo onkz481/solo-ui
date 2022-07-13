@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 // helpers
-import { htmlTags } from '../../util/helpers'
+import { htmlTags } from '../../util/variables'
 
 export function generator(
   defaultValue = 'div'

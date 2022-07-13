@@ -14,7 +14,7 @@ import roundable from '../../mixins/roundable'
 import { generator as ModelableGenerator } from '../../mixins/modelable'
 
 // helpers
-import { isEmpty } from '../../util/boolHelpers'
+import { isEmpty } from '../../util/helpers'
 
 export default Vue.extend({
   name: 'SuTabs',

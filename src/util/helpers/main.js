@@ -1,11 +1,3 @@
-export const regExpForGlobalVal = 'normal|inherit|initial|revert|unset'
-
-// bools
-export * from './boolHelpers'
-
-// elements
-export * from './elements'
-
 export function insertBefore(parentNode, newNode, referenceNode = null){
   if( !parentNode || !newNode ) return
 
